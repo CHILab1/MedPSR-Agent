@@ -1,135 +1,92 @@
-
-# MedPSR-Agent: Multi-Agent Clinical Decision Support System with Patient Similarity Retrieval on MIMIC-IV
+# Clinical Decision Support System with Patient Similarity Retrieval on MIMIC-IV
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Database Milvus](https://img.shields.io/badge/VectorDB-Milvus_v2.x-orange.svg)](https://milvus.io/)
 [![Dataset MIMIC-IV](https://img.shields.io/badge/Dataset-MIMIC--IV_v3.1-green.svg)](https://physionet.org/content/mimiciv/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-Official implementation of the paper:  
-**"A Multi-Agent Clinical Decision Support System with Patient Similarity Retrieval on MIMIC-IV"**
+A Multi-Agent Clinical Decision Support System (CDSS) built on **MIMIC-IV v3.1**, combining patient similarity vector search (via Milvus), multi-agent LLM reasoning (via Gemini / Gemma), and automated evaluation (via Ragas).
 
 ---
 
-## Overview & Abstract
+## 📌 Project Overview
 
-We present a multi-agent clinical decision support framework that combines structured electronic health record (EHR) data from **MIMIC-IV v3.1** with large language model (LLM)-driven clinical reasoning. 
+This repository contains the architecture, agent framework, vector search engine, and evaluation benchmarks for a Clinical Decision Support System. 
 
-The system processes hospital admissions through a specialized data pipeline producing three complementary patient embedding spaces:
-1. **Numeric Representation:** Standardized vital signs, lab panels, and physiological measurements.
-2. **Categorical Representation:** Demographic attributes, admission metadata, and procedural encodings.
-3. **Diagnostic Representation:** High-dimensional ICD-9/10 representations generated via **IDF-weighted FastText** embeddings.
-
-All vectors are indexed within a **Milvus** vector database to enable sub-second patient similarity retrieval.
-
-### Multi-Agent Architecture
-
-The reasoning workflow is orchestrated across **six specialized agents**:
-- **Query Router Agent:** Interprets free-text clinician inquiries, extracts clinical intents, and extracts search parameters.
-- **Similarity Retrieval Engine:** Executes a two-stage retrieval pipeline using Approximate Nearest Neighbor (ANN) search followed by multi-space re-ranking.
-- **Context Constructor Agent:** Gathers and formats longitudinal patient trajectories and retrieved peer cohorts into structured JSON evidence payloads.
-- **Specialist Clinical Agents (Diagnostic, Prognostic, Treatment):** Domain-specific LLM instances performing temporally aware, evidence-backed clinical evaluations.
-- **Synthesis Agent:** Merges disparate specialist findings into a cohesive, structured clinical consultation report.
-
-```
-[Physician Query] ──> [Query Router]
-                             │
-                             ▼
-  [Milvus Vector DB] ──> [Similarity Engine] (ANN + Multi-Embedding Re-ranking)
-                             │
-                             ▼
-                     [Context Constructor] (Structured JSON Evidence)
-                             │
-            ┌────────────────┼────────────────┐
-            ▼                ▼                ▼
-     [Diagnostic Agent] [Prognostic Agent] [Therapeutic Agent]
-            └────────────────┬────────────────┘
-                             ▼
-                     [Synthesis Agent] ──> [Structured Clinical Report]
-```
+The system leverages structured Electronic Health Record (EHR) data from hospital admissions in MIMIC-IV to perform:
+1. **Multi-Space Patient Similarity Retrieval:** Searching across numeric (vital signs, lab measurements), categorical (demographics, admission details), and diagnostic (IDF-weighted ICD representations) embedding spaces indexed in a **Milvus** vector database.
+2. **Context Construction:** Assembling longitudinal patient timelines, lab/vital trends, medication histories, and retrieved peer patient cohorts into structured JSON evidence payloads.
+3. **Multi-Agent Clinical Reasoning:** Orchestrating query routing, domain specialist analysis (diagnostic pattern analysis, pharmacological consultation, risk assessment), and final clinical report synthesis.
+4. **Automated Ragas Evaluation:** Assessing response quality, clinical validity, contradiction rate, answer relevancy, and context precision using a custom Ragas adapter for the Google `google-genai` SDK.
 
 ---
 
 ## 📂 Repository Structure & File Manifest
 
-Below is the directory map and functional description of the repository modules:
+The codebase is organized into modular packages and execution utilities:
 
 ```text
-clinsim-agent/
-├── configs/
-│   ├── agents.yaml               # Agent system prompts, temperature settings, and model targets
-│   ├── database.yaml             # Milvus collection schemas, index types, and connection settings
-│   └── embeddings.yaml           # Dimension definitions and weights for multi-vector ranking
-│
-├── data_pipeline/
+github/
+├── agents/                           # Multi-Agent Framework
 │   ├── __init__.py
-│   ├── extract_mimic.py          # SQL/DuckDB queries to extract raw cohorts from MIMIC-IV v3.1
-│   ├── preprocess_clinical.py    # Handling missing values, unit standardization, and normalization
-│   └── fasttext_diagnosis.py     # IDF-weighted FastText encoder training and inference for ICD codes
+│   ├── context_constructor.py        # Assembles structured clinical evidence & cohort timelines
+│   ├── data_gatherer.py              # Interfaces with Milvus DB & preprocessed clinical records
+│   ├── orchestrator.py               # Coordinates query routing, specialist execution & synthesis
+│   ├── report_synthesizer.py         # Merges specialist evaluations into a structured report
+│   ├── similarity_engine.py          # Multi-vector similarity retrieval & re-ranking engine
+│   └── specialist_llm.py             # Interface for LLM-driven domain specialists (Gemini/Gemma)
 │
-├── storage/
+├── config/                           # System Configuration
 │   ├── __init__.py
-│   ├── milvus_client.py          # Milvus connection handlers and collection lifecycle management
-│   └── indexer.py                # Batch-indexing numeric, categorical, and diagnostic vectors
+│   └── settings.py                   # Centralized settings (LLM models, Milvus params, feature maps)
 │
-├── agents/
+├── core/                             # Core Execution Pipeline & CLI
 │   ├── __init__.py
-│   ├── router.py                 # Physician query parsing and intent routing
-│   ├── retriever.py              # Two-stage ANN retrieval and multi-embedding re-ranking logic
-│   ├── context_builder.py        # Assembles structured JSON evidence and temporal timelines
-│   ├── specialists.py            # Diagnostic, prognostic, and therapeutic specialist agents
-│   └── synthesizer.py            # Synthesizes specialist outputs into a final clinical report
+│   ├── main.py                       # CLI entry point for clinical consultations
+│   └── pipeline.py                   # ClinicalPipeline orchestrating end-to-end execution
 │
-├── evaluation/
-│   ├── __init__.py
-│   ├── case_study_eval.py        # Qualitative case study reproduction and trace outputs
-│   └── retrieval_metrics.py      # NDCG, Precision@K, and clinical cohesion metrics
+├── data/                             # Data Assets & Checkpoints
+│   ├── hosp/
+│   │   └── d_icd_diagnoses.csv.gz    # MIMIC-IV ICD-9/10 diagnosis dictionary
+│   └── pipeline_checkpoints/         # Directory placeholder for pre-calculated feature checkpoints
 │
-├── tests/
-│   ├── test_pipeline.py          # Unit tests for embedding generation
-│   └── test_retrieval.py         # Integration tests for vector search and re-ranking
+├── utils/                            # Data Processing & Ragas Evaluation Utilities
+│   ├── build_checkpoints.py          # MIMIC-IV data processing, feature engineering & Milvus indexing
+│   ├── generate_ragas_query_dataset.py # Auto-generates evaluation datasets and ground truth queries
+│   ├── ragas_gemini_new_sdk_v2.py    # Custom Ragas LLM/Embedding wrapper for google-genai SDK
+│   ├── ragas_custom_metrics_new.py   # Custom Ragas evaluation metrics (Clinical Validity, etc.)
+│   ├── evaluate_with_ragas.py        # Benchmark execution script (Full Pipeline, Ablation, Monolithic)
+│   ├── results_full_pipeline_ragas.json  # Ragas evaluation results for full pipeline (100 cases)
+│   ├── results_ragas_ablation_and_monolithic.json # Comparative evaluation results (Ablation vs Baseline)
+│   └── results_similarity_test.ipynb # Jupyter notebook validating similarity retrieval performance
 │
-├── .env.example                  # Environment variable template (Milvus host, LLM API keys)
-├── requirements.txt              # Python package dependencies
-├── setup.py                      # Package installation script
-└── README.md                     # Project documentation and reproduction guidelines
+└── README.md                         # Project documentation
 ```
 
 ---
 
-## 🚀 Quickstart
+## 🛠 Component Summary
 
-### 1. Prerequisites
-- Python $\ge$ 3.10
-- Running [Milvus 2.x](https://milvus.io/docs/install_standalone-docker.md) instance (Docker or Cloud)
-- Credentialed access to [MIMIC-IV on PhysioNet](https://physionet.org/content/mimiciv/)
+### 1. Multi-Agent Framework (`agents/`)
+- **Query Router & Orchestrator:** Categorizes clinician inquiries (e.g., diagnostic pattern analysis, pharmacological consultation) and dispatches tasks to specialized agent prompts.
+- **Similarity Engine:** Executes multi-vector ANN retrieval across Milvus collections, weighting diagnostic codes, vital signs, and lab measurements to retrieve relevant peer patient cohorts.
+- **Context Constructor:** Formats raw EHR records, temporal trends, and retrieved cohort statistics into structured, hallucination-resistant prompts for LLM specialists.
+- **Specialist LLMs & Synthesizer:** Domain-focused LLMs evaluate the patient history alongside peer cohort evidence and generate a consolidated clinical consultation report.
 
-### 2. Environment Configuration
-Clone the repository and install required packages:
-```bash
-git clone https://github.com/your-username/MedPSR-Agent.git
-cd MedPSR-Agent
-pip install -r requirements.txt
-cp .env.example .env
-```
-Fill in `.env` with your OpenAI/Anthropic/Local LLM API credentials and Milvus endpoint.
+### 2. Configuration & Pipeline (`config/` & `core/`)
+- **Settings (`settings.py`):** Configures Milvus database connections, LLM endpoints (`gemini-2.5-flash`, `gemma-3-4b-it`, `gemma-3-1b-it`), weight vector allocations for similarity search, and feature mapping dictionaries for labs/vitals.
+- **CLI Interface (`main.py`):** Enables running queries for specific admission IDs (`hadm_id`), with options to set target similarity count (`--k_similar`), toggle vector retrieval (`--no-similarity`), export context payloads (`--save-context`), and enable verbose logging.
 
-### 3. Pipeline Execution
-1. **Preprocess and compute embeddings:**
-   ```bash
-   python data_pipeline/preprocess_clinical.py --mimic_dir /path/to/mimiciv/
-   python data_pipeline/fasttext_diagnosis.py --build_idf
-   ```
-2. **Index vectors into Milvus:**
-   ```bash
-   python storage/indexer.py --config configs/database.yaml
-   ```
-3. **Execute clinical inference:**
-   ```bash
-   python -m agents.router --query "Evaluate ICU patient with acute renal deterioration and refractory hypoxemia."
-   ```
+### 3. Evaluation & Benchmarking (`utils/`)
+- **Custom Ragas Adapter (`ragas_gemini_new_sdk_v2.py`):** Integrates Ragas evaluation metrics directly with Google's latest `google-genai` SDK.
+- **Custom Metrics (`ragas_custom_metrics_new.py`):** Implements domain-specific evaluators such as Clinical Validity, Contradiction Rate, Answer Relevancy, and Context Precision.
+- **Benchmark Datasets & Results (`results_*.json`):** Contains evaluation outputs across 100 test cases comparing:
+  - **Full Pipeline:** Multi-agent reasoning with patient similarity retrieval.
+  - **Ablation Study:** Multi-agent reasoning without patient similarity retrieval.
+  - **Monolithic Baseline:** Single LLM evaluation without specialized agents or similarity context.
 
 ---
 
-## 🔒 Data Use & Ethics Notice
-This project uses the **MIMIC-IV v3.1** database. Users must complete human-subjects training via CITI and sign the PhysioNet Data Use Agreement before utilizing or preprocessing data with this framework. No protected health information (PHI) is included in this repository.
+## 🔒 Data & Privacy Notice
+
+* **Patient Privacy:** Raw MIMIC-IV clinical datasets, patient vector indices, and full database checkpoints are excluded from this repository in compliance with the **PhysioNet Credentialed Data Use Agreement (DUA)** and HIPAA privacy regulations.
+* **Usage Requirements:** Running feature extraction or vector indexing locally requires credentialed access to MIMIC-IV v3.1 via PhysioNet, alongside configuring local environment settings (`.env`) for LLM API keys and Milvus vector storage endpoints.
