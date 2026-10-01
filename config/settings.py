@@ -35,22 +35,21 @@ class MilvusConfig:
 @dataclass
 class LLMConfig:
     api_key: str = os.getenv("GEMINI_API_KEY", "")
-    orchestrator_model: str = os.getenv("ORCHESTRATOR_MODEL", "gemma-3-1b-it")
-    specialist_model: str = os.getenv("SPECIALIST_MODEL", "gemini-2.5-flash")
-    synthesizer_model: str = os.getenv("SYNTHESIZER_MODEL", "gemma-3-4b-it")
+    orchestrator_model: str = os.getenv("ORCHESTRATOR_MODEL", "gemma4:e2b")
+    specialist_model: str = os.getenv("SPECIALIST_MODEL", "gemini-3.1-flash-lite-preview")
+    synthesizer_model: str = os.getenv("SYNTHESIZER_MODEL", "gemma4:31b-cloud")
     api_version: str = os.getenv("GEMINI_API_VERSION", "v1beta")
     # Specialist generation parameters
     specialist_temperature: float = 0.6
     specialist_top_p: float = 0.90
     specialist_top_k: int = 40
 
-
 @dataclass
 class SimilarityDefaults:
     k_similar: int = 10
     pool_size: int = 200
     # Weights: [diagnosis, numeric, categorical]
-    weights: List[float] = field(default_factory=lambda: [0.40, 0.50, 0.10])
+    weights: List[float] = field(default_factory=lambda: [0.40, 0.40, 0.20])
 
 
 @dataclass
