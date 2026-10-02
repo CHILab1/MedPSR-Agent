@@ -27,7 +27,6 @@ The codebase is organized into modular packages and execution utilities:
 ```text
 github/
 ├── agents/                           # Multi-Agent Framework
-│   ├── __init__.py
 │   ├── context_constructor.py        # Assembles structured clinical evidence & cohort timelines
 │   ├── data_gatherer.py              # Interfaces with Milvus DB & preprocessed clinical records
 │   ├── orchestrator.py               # Coordinates query routing, specialist execution & synthesis
@@ -36,18 +35,11 @@ github/
 │   └── specialist_llm.py             # Interface for LLM-driven domain specialists (Gemini/Gemma)
 │
 ├── config/                           # System Configuration
-│   ├── __init__.py
 │   └── settings.py                   # Centralized settings (LLM models, Milvus params, feature maps)
 │
 ├── core/                             # Core Execution Pipeline & CLI
-│   ├── __init__.py
 │   ├── main.py                       # CLI entry point for clinical consultations
 │   └── pipeline.py                   # ClinicalPipeline orchestrating end-to-end execution
-│
-├── data/                             # Data Assets & Checkpoints
-│   ├── hosp/
-│   │   └── d_icd_diagnoses.csv.gz    # MIMIC-IV ICD-9/10 diagnosis dictionary
-│   └── pipeline_checkpoints/         # Directory placeholder for pre-calculated feature checkpoints
 │
 ├── utils/                            # Data Processing & Ragas Evaluation Utilities
 │   ├── build_checkpoints.py          # MIMIC-IV data processing, feature engineering & Milvus indexing
@@ -73,7 +65,7 @@ github/
 - **Specialist LLMs & Synthesizer:** Domain-focused LLMs evaluate the patient history alongside peer cohort evidence and generate a consolidated clinical consultation report.
 
 ### 2. Configuration & Pipeline (`config/` & `core/`)
-- **Settings (`settings.py`):** Configures Milvus database connections, LLM endpoints (`gemini-2.5-flash`, `gemma-3-4b-it`, `gemma-3-1b-it`), weight vector allocations for similarity search, and feature mapping dictionaries for labs/vitals.
+- **Settings (`settings.py`):** Configures Milvus database connections, LLM endpoints, weight vector allocations for similarity search, and feature mapping dictionaries for labs/vitals.
 - **CLI Interface (`main.py`):** Enables running queries for specific admission IDs (`hadm_id`), with options to set target similarity count (`--k_similar`), toggle vector retrieval (`--no-similarity`), export context payloads (`--save-context`), and enable verbose logging.
 
 ### 3. Evaluation & Benchmarking (`utils/`)
