@@ -47,6 +47,10 @@ class ContextConstructor:
         use_similarity = routing.get("similarity", False)
         k_similar = routing.get("k_similar", self.settings.similarity.k_similar)
         weights = routing.get("weights_similarity", self.settings.similarity.weights)
+        exclude_same_subject = routing.get(
+            "exclude_same_subject",
+            getattr(self.settings.similarity, "exclude_same_subject", True),
+        )
 
         with LogTimer("ContextConstructor — Context Assembly", logger):
             # ── 1. Target patient data ──
@@ -70,6 +74,7 @@ class ContextConstructor:
                         "similarity_enabled": use_similarity,
                         "k_similar": k_similar,
                         "weights": weights,
+                        "exclude_same_subject": exclude_same_subject,
                     },
                 },
                 "target_patient": target_data,
@@ -82,6 +87,7 @@ class ContextConstructor:
                     target_hadm_id=patient_id,
                     k=k_similar,
                     weights=weights,
+                    exclude_same_subject=exclude_same_subject,
                 )
 
                 if similar_results:
@@ -101,6 +107,12 @@ class ContextConstructor:
                         hid = pat.get("hadm_id")
                         if hid in scores:
                             pat["similarity_score"] = round(scores[hid], 4)
+
+                    target_subj = target_data.get("subject_id")
+                    if target_subj is not None and exclude_same_subject:
+                        similar_patients = [
+                            p for p in similar_patients if p.get("subject_id") != target_subj
+                        ]
 
                     context["similar_patients"] = similar_patients
                     logger.info(f"[success]{len(similar_patients)} similar patients added[/success]")

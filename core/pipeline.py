@@ -71,7 +71,8 @@ class AgenticPipeline:
                 logger.info("Initializing Agent 4: [agent]SimilarityEngine[/agent]")
                 self.similarity_engine = SimilarityEngine(self.settings)
                 self.similarity_engine.load(
-                    hadm_to_idx=self.data_gatherer._hadm_to_idx
+                    hadm_to_idx=self.data_gatherer._hadm_to_idx,
+                    hadm_to_subject=self.data_gatherer.hadm_to_subject,
                 )
             else:
                 logger.info("SimilarityEngine skipped (--no-similarity)")
@@ -98,6 +99,7 @@ class AgenticPipeline:
         k_similar: Optional[int] = None,
         force_no_similarity: bool = False,
         save_context: bool = False,
+        exclude_same_subject: Optional[bool] = None,
     ) -> Dict[str, Any]:
         """
         Executes complete agentic pipeline.
@@ -108,6 +110,7 @@ class AgenticPipeline:
             k_similar: Override for number of similar patients
             force_no_similarity: Force disable similarity
             save_context: If True, saves JSON context to file
+            exclude_same_subject: Exclude admissions with the same subject_id
 
         Returns:
             Dict containing routing, context, and responses
@@ -137,6 +140,8 @@ class AgenticPipeline:
             routing["similarity"] = False
         if k_similar is not None:
             routing["k_similar"] = k_similar
+        if exclude_same_subject is not None:
+            routing["exclude_same_subject"] = exclude_same_subject
 
         # Log complete routing
         logger.info(f"Final routing:\n{json.dumps(routing, indent=2, ensure_ascii=False)}")
@@ -212,7 +217,7 @@ class AgenticPipeline:
         # Unified report
         if final_report:
             console.print()
-            console.rule("[bold green]✧ UNIFIED CLINICAL REPORT ✧[/bold green]")
+            console.rule("[bold green]UNIFIED CLINICAL REPORT[/bold green]")
             console.print(final_report)
             console.print()
 
@@ -225,8 +230,8 @@ class AgenticPipeline:
 def _topic_title(topic: str) -> str:
     """Converts topic name into readable title."""
     titles = {
-        "pattern_analysis": "📊 Diagnostic Pattern Analysis",
-        "consulto_farmacologico": "💊 Pharmacological Consultation",
+        "pattern_analysis": "Diagnostic Pattern Analysis",
+        "consulto_farmacologico": "Pharmacological Consultation",
     }
     return titles.get(topic, topic.replace("_", " ").title())
 

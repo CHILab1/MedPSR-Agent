@@ -32,6 +32,7 @@ class DataGatherer:
         self._prescriptions_map: Dict[int, dict] = {}
         self._diagnosis_desc_map: Dict[str, str] = {}
         self._hadm_to_idx: Dict[int, int] = {}
+        self._hadm_to_subject: Dict[int, int] = {}
         self._loaded = False
 
     def load(self):
@@ -57,6 +58,13 @@ class DataGatherer:
         self._hadm_to_idx = {
             int(h): i for i, h in enumerate(self._combined_data["hadm_id"].values)
         }
+        if "subject_id" in self._combined_data.columns:
+            self._hadm_to_subject = {
+                int(h): int(s)
+                for h, s in zip(self._combined_data["hadm_id"].values, self._combined_data["subject_id"].values)
+            }
+        else:
+            self._hadm_to_subject = {}
         logger.info(
             f"Slim parquet loaded: {len(self._combined_data)} admissions, "
             f"{len(self._combined_data.columns)} columns"
@@ -93,6 +101,15 @@ class DataGatherer:
     def get_patient_index(self, hadm_id: int) -> Optional[int]:
         """Returns DataFrame index for a hadm_id."""
         return self._hadm_to_idx.get(int(hadm_id))
+
+    def get_subject_id(self, hadm_id: int) -> Optional[int]:
+        """Returns subject_id for a hadm_id."""
+        return self._hadm_to_subject.get(int(hadm_id))
+
+    @property
+    def hadm_to_subject(self) -> Dict[int, int]:
+        """Map hadm_id -> subject_id."""
+        return self._hadm_to_subject
 
     def get_available_hadm_ids(self, sample: int = 10) -> List[int]:
         """Returns a sample of available hadm_ids."""
@@ -172,6 +189,8 @@ class DataGatherer:
             "rank": rank,
             "hadm_id": _convert(row["hadm_id"]),
         }
+        if "subject_id" in row and pd.notna(row["subject_id"]):
+            data["subject_id"] = _convert(row["subject_id"])
 
         # Demographics
         if include_all or "demographics" in attrs:

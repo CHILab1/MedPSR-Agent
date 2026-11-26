@@ -488,15 +488,15 @@ def run_generation(
     (output_dir / "raw").mkdir(exist_ok=True)
 
     console.rule(f"[bold cyan]RAGAS Dataset Generator — Run {run_id}[/bold cyan]")
-    console.print(f"  📁 Output → {output_dir}")
-    console.print(f"  👥 Pazienti: {n_patients} | 🎯 Domande: {len(questions)}")
-    console.print(f"  🔢 Seed: {seed} | 🔗 Similarity: {'OFF' if no_similarity else 'ON'}")
+    console.print(f"  Output:   {output_dir}")
+    console.print(f"  Patients: {n_patients} | Questions: {len(questions)}")
+    console.print(f"  Seed:     {seed} | Similarity: {'OFF' if no_similarity else 'ON'}")
     console.print()
 
     # ── Settings ──
     settings = get_settings()
     if not settings.llm.api_key:
-        console.print("[bold red]❌ GEMINI_API_KEY is not configured![/bold red]")
+        console.print("[bold red][ERROR] GEMINI_API_KEY is not configured![/bold red]")
         sys.exit(1)
 
     # ── Initialize pipeline ──
@@ -513,14 +513,14 @@ def run_generation(
 
     if len(all_hadm_ids) < total_patients_needed:
         console.print(
-            f"[yellow]⚠ Solo {len(all_hadm_ids)} patients available in database "
-            f"(requested {total_patients_needed} unici). Some patients will be reused.[/yellow]"
+            f"[yellow][WARN] Only {len(all_hadm_ids)} patients available in database "
+            f"(requested {total_patients_needed} unique). Some patients will be reused.[/yellow]"
         )
         selected_hadm_ids = random.choices(all_hadm_ids, k=total_patients_needed)
     else:
         selected_hadm_ids = random.sample(all_hadm_ids, total_patients_needed)
 
-    console.print(f"[green]✓ Selected {len(set(selected_hadm_ids))} unique hadm_ids out of {total_patients_needed} requested[/green]")
+    console.print(f"[green][OK] Selected {len(set(selected_hadm_ids))} unique hadm_ids out of {total_patients_needed} requested[/green]")
     console.print()
 
     # Create (hadm_id, question) pairs
@@ -551,7 +551,7 @@ def run_generation(
     _skip_set = set(SKIP_HADM_IDS)
     if _skip_set:
         console.print(
-            f"[yellow]⏭  Patients to skip ({len(_skip_set)}): {sorted(_skip_set)}[/yellow]"
+            f"[yellow]Patients to skip ({len(_skip_set)}): {sorted(_skip_set)}[/yellow]"
         )
 
     console.rule("[bold green]STARTING GENERATION[/bold green]")
@@ -560,7 +560,7 @@ def run_generation(
         # ── Salta pazienti in SKIP_HADM_IDS ──
         if hadm_id in _skip_set:
             console.print(
-                f"\n[dim]⏭  Combination {idx}/{total_combinations} "
+                f"\n[dim]Combination {idx}/{total_combinations} "
                 f"(hadm_id={hadm_id}) — SKIPPED (in SKIP_HADM_IDS)[/dim]"
             )
             continue
@@ -609,7 +609,7 @@ def run_generation(
             processed += 1
 
             console.print(
-                f"    [green]✓[/green] Completed in {elapsed:.1f}s | "
+                f"    [green][OK][/green] Completed in {elapsed:.1f}s | "
                 f"Contexts: {len(ragas_rec['retrieved_contexts'])} | "
                 f"Response: {len(ragas_rec['response'])} chars"
             )
@@ -623,7 +623,7 @@ def run_generation(
                 "traceback": traceback.format_exc(),
             }
             errors.append(err_info)
-            console.print(f"    [red]✗ Errore: {e}[/red]")
+            console.print(f"    [red][ERROR] {e}[/red]")
             logger.error(f"Error for {hadm_id}/{question_meta['id']}: {e}")
 
         # Pause between API calls to avoid rate-limiting
@@ -633,7 +633,7 @@ def run_generation(
         # Checkpoint every 5 combinations or at the end
         if idx % 5 == 0 or idx == total_combinations:
             console.print(
-                f"\n[yellow]💾 Checkpoint after combination {idx}/{total_combinations}...[/yellow]"
+                f"\n[yellow]Checkpoint after combination {idx}/{total_combinations}...[/yellow]"
             )
             _checkpoint_save(ragas_records, output_dir, run_id, idx)
 
@@ -677,15 +677,15 @@ def run_generation(
 
     # ── Final report ──
     console.rule("[bold cyan]GENERATION COMPLETED[/bold cyan]")
-    console.print(f"  ✅ Successes:     {processed}/{total_combinations}")
-    console.print(f"  ❌ Failures:      {skipped}/{total_combinations}")
-    console.print(f"  ⏱  Total time: {total_time:.0f}s")
-    console.print(f"  📊 Record RAGAS: {len(ragas_records)}")
+    console.print(f"  Successes:     {processed}/{total_combinations}")
+    console.print(f"  Failures:      {skipped}/{total_combinations}")
+    console.print(f"  Total time:    {total_time:.0f}s")
+    console.print(f"  RAGAS records: {len(ragas_records)}")
     console.print()
-    console.print(f"  📁 Output directory: [bold]{output_dir}[/bold]")
-    console.print(f"  📄 RAGAS JSON:   {ragas_path}")
-    console.print(f"  📋 RAGAS CSV:    {csv_path}")
-    console.print(f"  📝 Run summary:  {summary_path}")
+    console.print(f"  Output directory: [bold]{output_dir}[/bold]")
+    console.print(f"  RAGAS JSON:       {ragas_path}")
+    console.print(f"  RAGAS CSV:        {csv_path}")
+    console.print(f"  Run summary:      {summary_path}")
 
     return ragas_records, summary
 
@@ -705,7 +705,7 @@ def _checkpoint_save(ragas_records: list, output_dir: Path, run_id: str, n_patie
 
 def main():
     parser = argparse.ArgumentParser(
-        description="🏥 RAGAS Dataset Generator — Agentic Clinical Pipeline",
+        description="RAGAS Dataset Generator — Agentic Clinical Pipeline",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""\
 Esempi:

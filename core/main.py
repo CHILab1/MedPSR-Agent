@@ -27,7 +27,7 @@ logger = get_logger("main")
 
 def main():
     parser = argparse.ArgumentParser(
-        description="🏥 Agentic Clinical Decision Support — MIMIC-IV",
+        description="Agentic Clinical Decision Support — MIMIC-IV",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""\
     Examples:
@@ -59,6 +59,11 @@ def main():
         "--no-similarity",
         action="store_true",
         help="Disable similar patient search",
+    )
+    parser.add_argument(
+        "--include-same-subject",
+        action="store_true",
+        help="Do NOT exclude admissions belonging to the same subject_id (excluded by default)",
     )
     parser.add_argument(
         "--save-context",
@@ -99,7 +104,7 @@ def main():
     # Check API key
     if not settings.llm.api_key:
         console.print(
-            "[bold red]❌ GEMINI_API_KEY is not configured![/bold red]\n"
+            "[bold red][ERROR] GEMINI_API_KEY is not configured![/bold red]\n"
             "Create a .env file in the project folder with:\n"
             "  GEMINI_API_KEY=your-api-key\n"
             "Or export environment variable.",
@@ -121,6 +126,7 @@ def main():
             k_similar=args.k_similar,
             force_no_similarity=args.no_similarity,
             save_context=args.save_context,
+            exclude_same_subject=not args.include_same_subject,
         )
 
         # Optional report saving
@@ -163,7 +169,7 @@ def _save_report(result: dict, filepath: str):
         
         # 1. UNIFIED REPORT (Agent 6)
         if result.get("final_report"):
-            f.write("  ✧ UNIFIED CLINICAL REPORT ✧\n")
+            f.write("  UNIFIED CLINICAL REPORT\n")
             f.write("=" * 70 + "\n\n")
             f.write(result["final_report"] + "\n\n")
             f.write("=" * 70 + "\n")

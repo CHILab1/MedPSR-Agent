@@ -20,8 +20,7 @@ from utils.logging import get_logger, LogTimer
 
 logger = get_logger("specialist_llm")
 
-# ── Prompt specializzati per topic ──
-# Derivati da api_gemini_6_new_medical_prompt_v4_modified.py
+# ── Specialized prompts by topic ──
 
 SPECIALIST_PROMPTS = {
     "pattern_analysis": """\
@@ -241,13 +240,13 @@ class SpecialistLLM:
                 ))
                 if is_transient:
                     logger.warning(
-                        f"  ⏳ [{topic}] Attempt {attempt} failed: {e}. "
+                        f"  [{topic}] Attempt {attempt} failed: {e}. "
                         f"Retrying in {wait}s..."
                     )
                 else:
                     # Non-recoverable error (e.g. invalid prompt, auth)
                     logger.error(
-                        f"  ✗ [{topic}] Non-transient error at attempt {attempt}: {e}"
+                        f"  [ERROR] [{topic}] Non-transient error at attempt {attempt}: {e}"
                     )
                     return None
 

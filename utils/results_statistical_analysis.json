@@ -1,0 +1,629 @@
+{
+  "metadata": {
+    "title": "Statistical Analysis Results (N=100 / N=70 Benchmark)",
+    "timestamp": "2026-11-26T17:00:33.859341",
+    "methodology": "10,000-resample percentile bootstrap 95% CIs, SE, paired Wilcoxon, exact McNemar, Holm-Bonferroni FWER"
+  },
+  "table_1_overall": {
+    "Orchestrator Accuracy": {
+      "component": "Orchestrator",
+      "focus": "Router classification correctness",
+      "stats": {
+        "mean": 0.96,
+        "std": 0.1278,
+        "se": 0.0128,
+        "ci_low": 0.9333,
+        "ci_high": 0.9833,
+        "n": 100
+      },
+      "n_cases": 100
+    },
+    "Hit-Rate @ K": {
+      "component": "Similarity Engine",
+      "focus": "Utility of retrieved cohort (Jaccard >= 0.2)",
+      "stats": {
+        "mean": 0.8857,
+        "std": 0.3205,
+        "se": 0.0383,
+        "ci_low": 0.8,
+        "ci_high": 0.9571,
+        "n": 70
+      },
+      "n_cases": 70
+    },
+    "Precision @ K": {
+      "component": "Similarity Engine",
+      "focus": "Yield of retrieved cohort (Jaccard >= 0.2)",
+      "stats": {
+        "mean": 0.4914,
+        "std": 0.3517,
+        "se": 0.042,
+        "ci_low": 0.4114,
+        "ci_high": 0.5743,
+        "n": 70
+      },
+      "n_cases": 70
+    },
+    "nDCG @ K": {
+      "component": "Similarity Engine",
+      "focus": "Ranking similarity cohort",
+      "stats": {
+        "mean": 0.8752,
+        "std": 0.0893,
+        "se": 0.0107,
+        "ci_low": 0.8542,
+        "ci_high": 0.896,
+        "n": 70
+      },
+      "n_cases": 70
+    },
+    "Clinical Validity": {
+      "component": "Specialist & Synthesizer",
+      "focus": "Automated medical plausibility",
+      "stats": {
+        "mean": 0.876,
+        "std": 0.197,
+        "se": 0.0197,
+        "ci_low": 0.835,
+        "ci_high": 0.913,
+        "n": 100
+      },
+      "n_cases": 100
+    },
+    "Contradiction Rate": {
+      "component": "Report Synthesizer",
+      "focus": "Inner-agent factual consistency",
+      "stats": {
+        "mean": 0.0,
+        "std": 0.0,
+        "se": 0.0,
+        "ci_low": 0.0,
+        "ci_high": 0.0,
+        "n": 100
+      },
+      "n_cases": 100
+    },
+    "Answer Relevancy": {
+      "component": "End-to-End",
+      "focus": "Alignment of response to query",
+      "stats": {
+        "mean": 0.7634,
+        "std": 0.0428,
+        "se": 0.0043,
+        "ci_low": 0.755,
+        "ci_high": 0.7717,
+        "n": 100
+      },
+      "n_cases": 100
+    },
+    "Context Precision": {
+      "component": "Retrieval-to-Context",
+      "focus": "Ranking quality of context",
+      "stats": {
+        "mean": 0.8306,
+        "std": 0.186,
+        "se": 0.0186,
+        "ci_low": 0.7938,
+        "ci_high": 0.8657,
+        "n": 100
+      },
+      "n_cases": 100
+    }
+  },
+  "table_2_thresholds": {
+    "0.2": {
+      "hit_rate": {
+        "mean": 0.8857,
+        "std": 0.3205,
+        "se": 0.0383,
+        "ci_low": 0.8,
+        "ci_high": 0.9571,
+        "n": 70
+      },
+      "precision": {
+        "mean": 0.4914,
+        "std": 0.3517,
+        "se": 0.042,
+        "ci_low": 0.4114,
+        "ci_high": 0.5743,
+        "n": 70
+      },
+      "n_cases": 70
+    },
+    "0.3": {
+      "hit_rate": {
+        "mean": 0.7143,
+        "std": 0.455,
+        "se": 0.0544,
+        "ci_low": 0.6143,
+        "ci_high": 0.8143,
+        "n": 70
+      },
+      "precision": {
+        "mean": 0.2657,
+        "std": 0.3422,
+        "se": 0.0409,
+        "ci_low": 0.19,
+        "ci_high": 0.3486,
+        "n": 70
+      },
+      "n_cases": 70
+    },
+    "0.4": {
+      "hit_rate": {
+        "mean": 0.4286,
+        "std": 0.4984,
+        "se": 0.0596,
+        "ci_low": 0.3143,
+        "ci_high": 0.5429,
+        "n": 70
+      },
+      "precision": {
+        "mean": 0.1829,
+        "std": 0.3217,
+        "se": 0.0384,
+        "ci_low": 0.1143,
+        "ci_high": 0.2629,
+        "n": 70
+      },
+      "n_cases": 70
+    },
+    "0.5": {
+      "hit_rate": {
+        "mean": 0.2857,
+        "std": 0.455,
+        "se": 0.0544,
+        "ci_low": 0.1857,
+        "ci_high": 0.4,
+        "n": 70
+      },
+      "precision": {
+        "mean": 0.14,
+        "std": 0.316,
+        "se": 0.0378,
+        "ci_low": 0.0743,
+        "ci_high": 0.2186,
+        "n": 70
+      },
+      "n_cases": 70
+    }
+  },
+  "table_3_baseline_comparison": {
+    "n_patients": 100,
+    "thresholds": {
+      "0.2": {
+        "hit_rate": {
+          "FastText": {
+            "mean": 0.98,
+            "std": 0.1407,
+            "se": 0.0141,
+            "ci_low": 0.95,
+            "ci_high": 1.0,
+            "n": 100
+          },
+          "TF-IDF": {
+            "mean": 0.93,
+            "std": 0.2564,
+            "se": 0.0256,
+            "ci_low": 0.88,
+            "ci_high": 0.97,
+            "n": 100
+          },
+          "p_mcnemar": 0.1796875,
+          "mcnemar_contingency": {
+            "both": 91,
+            "a_only": 7,
+            "b_only": 2,
+            "neither": 0,
+            "n_discordant": 9
+          }
+        },
+        "precision": {
+          "FastText": {
+            "mean": 0.62,
+            "std": 0.3438,
+            "se": 0.0344,
+            "ci_low": 0.554,
+            "ci_high": 0.686,
+            "n": 100
+          },
+          "TF-IDF": {
+            "mean": 0.668,
+            "std": 0.3363,
+            "se": 0.0336,
+            "ci_low": 0.601,
+            "ci_high": 0.732,
+            "n": 100
+          },
+          "p_wilcoxon": 0.17895126767281266
+        }
+      },
+      "0.3": {
+        "hit_rate": {
+          "FastText": {
+            "mean": 0.76,
+            "std": 0.4292,
+            "se": 0.0429,
+            "ci_low": 0.68,
+            "ci_high": 0.84,
+            "n": 100
+          },
+          "TF-IDF": {
+            "mean": 0.72,
+            "std": 0.4513,
+            "se": 0.0451,
+            "ci_low": 0.63,
+            "ci_high": 0.81,
+            "n": 100
+          },
+          "p_mcnemar": 0.5715881884098053,
+          "mcnemar_contingency": {
+            "both": 60,
+            "a_only": 16,
+            "b_only": 12,
+            "neither": 12,
+            "n_discordant": 28
+          }
+        },
+        "precision": {
+          "FastText": {
+            "mean": 0.385,
+            "std": 0.3462,
+            "se": 0.0346,
+            "ci_low": 0.318,
+            "ci_high": 0.454,
+            "n": 100
+          },
+          "TF-IDF": {
+            "mean": 0.332,
+            "std": 0.3351,
+            "se": 0.0335,
+            "ci_low": 0.269,
+            "ci_high": 0.399,
+            "n": 100
+          },
+          "p_wilcoxon": 0.2605983152700586
+        }
+      },
+      "0.4": {
+        "hit_rate": {
+          "FastText": {
+            "mean": 0.55,
+            "std": 0.5,
+            "se": 0.05,
+            "ci_low": 0.45,
+            "ci_high": 0.65,
+            "n": 100
+          },
+          "TF-IDF": {
+            "mean": 0.43,
+            "std": 0.4976,
+            "se": 0.0498,
+            "ci_low": 0.33,
+            "ci_high": 0.53,
+            "n": 100
+          },
+          "p_mcnemar": 0.03569813817739487,
+          "mcnemar_contingency": {
+            "both": 35,
+            "a_only": 20,
+            "b_only": 8,
+            "neither": 37,
+            "n_discordant": 28
+          }
+        },
+        "precision": {
+          "FastText": {
+            "mean": 0.211,
+            "std": 0.295,
+            "se": 0.0295,
+            "ci_low": 0.155,
+            "ci_high": 0.271,
+            "n": 100
+          },
+          "TF-IDF": {
+            "mean": 0.125,
+            "std": 0.1987,
+            "se": 0.0199,
+            "ci_low": 0.088,
+            "ci_high": 0.166,
+            "n": 100
+          },
+          "p_wilcoxon": 0.005337934935637188
+        }
+      },
+      "0.5": {
+        "hit_rate": {
+          "FastText": {
+            "mean": 0.4,
+            "std": 0.4924,
+            "se": 0.0492,
+            "ci_low": 0.3,
+            "ci_high": 0.5,
+            "n": 100
+          },
+          "TF-IDF": {
+            "mean": 0.31,
+            "std": 0.4648,
+            "se": 0.0465,
+            "ci_low": 0.22,
+            "ci_high": 0.4,
+            "n": 100
+          },
+          "p_mcnemar": 0.12207812070846558,
+          "mcnemar_contingency": {
+            "both": 22,
+            "a_only": 18,
+            "b_only": 9,
+            "neither": 51,
+            "n_discordant": 27
+          }
+        },
+        "precision": {
+          "FastText": {
+            "mean": 0.141,
+            "std": 0.2582,
+            "se": 0.0258,
+            "ci_low": 0.093,
+            "ci_high": 0.195,
+            "n": 100
+          },
+          "TF-IDF": {
+            "mean": 0.068,
+            "std": 0.1317,
+            "se": 0.0132,
+            "ci_low": 0.044,
+            "ci_high": 0.096,
+            "n": 100
+          },
+          "p_wilcoxon": 0.008722337333563144
+        }
+      }
+    },
+    "global_metrics": {
+      "nDCG@10": {
+        "FastText": {
+          "mean": 0.9185,
+          "std": 0.0592,
+          "se": 0.0059,
+          "ci_low": 0.9068,
+          "ci_high": 0.9299,
+          "n": 100
+        },
+        "TF-IDF": {
+          "mean": 0.8703,
+          "std": 0.2174,
+          "se": 0.0217,
+          "ci_low": 0.8245,
+          "ci_high": 0.9086,
+          "n": 100
+        },
+        "p_wilcoxon": 0.9780556767995897
+      },
+      "Mean Best Jaccard": {
+        "FastText": {
+          "mean": 0.4582,
+          "std": 0.1946,
+          "se": 0.0195,
+          "ci_low": 0.4213,
+          "ci_high": 0.4964,
+          "n": 100
+        },
+        "TF-IDF": {
+          "mean": 0.3934,
+          "std": 0.1868,
+          "se": 0.0187,
+          "ci_low": 0.3571,
+          "ci_high": 0.4295,
+          "n": 100
+        },
+        "p_wilcoxon": 0.013399499727994896
+      }
+    },
+    "tests": [
+      {
+        "comparison": "Hit-Rate@10 (tau=0.2)",
+        "p_raw": 0.17969,
+        "p_adj_holm": 0.89476,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "comparison": "Precision@10 (tau=0.2)",
+        "p_raw": 0.17895,
+        "p_adj_holm": 0.89476,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "comparison": "Hit-Rate@10 (tau=0.3)",
+        "p_raw": 0.57159,
+        "p_adj_holm": 1.0,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "comparison": "Precision@10 (tau=0.3)",
+        "p_raw": 0.2606,
+        "p_adj_holm": 0.89476,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "comparison": "Hit-Rate@10 (tau=0.4)",
+        "p_raw": 0.0357,
+        "p_adj_holm": 0.24989,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "comparison": "Precision@10 (tau=0.4)",
+        "p_raw": 0.00534,
+        "p_adj_holm": 0.05338,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "comparison": "Hit-Rate@10 (tau=0.5)",
+        "p_raw": 0.12208,
+        "p_adj_holm": 0.73247,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "comparison": "Precision@10 (tau=0.5)",
+        "p_raw": 0.00872,
+        "p_adj_holm": 0.0785,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "comparison": "nDCG@10",
+        "p_raw": 0.97806,
+        "p_adj_holm": 1.0,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "comparison": "Mean Best Jaccard",
+        "p_raw": 0.0134,
+        "p_adj_holm": 0.1072,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      }
+    ]
+  },
+  "table_4_ablation": {
+    "n_cases": 100,
+    "descriptive": {
+      "Answer Relevancy": {
+        "Full": {
+          "mean": 0.7634,
+          "std": 0.0428,
+          "se": 0.0043,
+          "ci_low": 0.755,
+          "ci_high": 0.7717,
+          "n": 100
+        },
+        "Monolithic": {
+          "mean": 0.7342,
+          "std": 0.0566,
+          "se": 0.0057,
+          "ci_low": 0.723,
+          "ci_high": 0.745,
+          "n": 100
+        },
+        "Ablated": {
+          "mean": 0.7267,
+          "std": 0.1737,
+          "se": 0.0174,
+          "ci_low": 0.6895,
+          "ci_high": 0.7573,
+          "n": 100
+        }
+      },
+      "Clinical Validity": {
+        "Full": {
+          "mean": 0.876,
+          "std": 0.197,
+          "se": 0.0197,
+          "ci_low": 0.835,
+          "ci_high": 0.913,
+          "n": 100
+        },
+        "Monolithic": {
+          "mean": 0.8525,
+          "std": 0.2558,
+          "se": 0.0256,
+          "ci_low": 0.8005,
+          "ci_high": 0.8995,
+          "n": 100
+        },
+        "Ablated": {
+          "mean": 0.853,
+          "std": 0.2187,
+          "se": 0.0219,
+          "ci_low": 0.809,
+          "ci_high": 0.893,
+          "n": 100
+        }
+      },
+      "Context Precision": {
+        "Full": {
+          "mean": 0.8306,
+          "std": 0.186,
+          "se": 0.0186,
+          "ci_low": 0.7938,
+          "ci_high": 0.8657,
+          "n": 100
+        },
+        "Monolithic": {
+          "mean": 0.7469,
+          "std": 0.2783,
+          "se": 0.0278,
+          "ci_low": 0.6919,
+          "ci_high": 0.7992,
+          "n": 100
+        },
+        "Ablated": {
+          "mean": 0.7623,
+          "std": 0.368,
+          "se": 0.0368,
+          "ci_low": 0.69,
+          "ci_high": 0.831,
+          "n": 100
+        }
+      }
+    },
+    "comparisons": [
+      {
+        "metric": "Answer Relevancy",
+        "comparison": "Full Pipeline vs Monolithic",
+        "p_raw": 1.5469766560710567e-06,
+        "p_adj_holm": 9.281859936426341e-06,
+        "significant": true,
+        "verdict": "Statistically Significant (p < 0.05)"
+      },
+      {
+        "metric": "Answer Relevancy",
+        "comparison": "Full Pipeline vs Ablated",
+        "p_raw": 0.831398848264189,
+        "p_adj_holm": 1.0,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "metric": "Clinical Validity",
+        "comparison": "Full Pipeline vs Monolithic",
+        "p_raw": 0.6882320149500785,
+        "p_adj_holm": 1.0,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "metric": "Clinical Validity",
+        "comparison": "Full Pipeline vs Ablated",
+        "p_raw": 0.4025296589786356,
+        "p_adj_holm": 1.0,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "metric": "Context Precision",
+        "comparison": "Full Pipeline vs Monolithic",
+        "p_raw": 0.03269567722805036,
+        "p_adj_holm": 0.1634783861402518,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      },
+      {
+        "metric": "Context Precision",
+        "comparison": "Full Pipeline vs Ablated",
+        "p_raw": 0.23054939744626257,
+        "p_adj_holm": 0.9221975897850503,
+        "significant": false,
+        "verdict": "Observed Trend (n.s.)"
+      }
+    ]
+  }
+}

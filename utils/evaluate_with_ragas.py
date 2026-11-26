@@ -14,14 +14,13 @@ Features v2:
   - Detailed final cost report
 
 Calculated metrics (reference-free):
-  - Faithfulness              : Is the response faithful to retrieved contexts?
   - AnswerRelevancy           : Is the response relevant to the question?
   - ContextPrecisionWithoutRef: Are retrieved contexts relevant?
 
 Usage:
-    python evaluate_with_ragas.py --dataset results/ragas_dataset_final_20patients.json
-    python evaluate_with_ragas.py --dataset results/ragas_dataset_final_20patients.json --max-records 10
-    python evaluate_with_ragas.py --dataset results/ragas_dataset_final_20patients.json --judge-model gemini-2.5-flash
+    python evaluate_with_ragas.py --dataset results/ragas_dataset.json
+    python evaluate_with_ragas.py --dataset results/ragas_dataset.json --max-records 10
+    python evaluate_with_ragas.py --dataset results/ragas_dataset.json --judge-model gemini-3.1-pro-preview
     python evaluate_with_ragas.py --resume results/ragas_eval_20260511/checkpoint.json
 """
 
@@ -108,7 +107,7 @@ def load_dataset(dataset_path: Path) -> list[dict]:
     """Loads RAGAS dataset from JSON file."""
     with open(dataset_path, "r", encoding="utf-8") as f:
         records = json.load(f)
-    console.print(f"[green]✓ Dataset loaded: {len(records)} records from {dataset_path.name}[/green]")
+    console.print(f"[green][OK] Dataset loaded: {len(records)} records from {dataset_path.name}[/green]")
     return records
 
 
@@ -123,7 +122,7 @@ def filter_valid_records(records: list[dict]) -> list[dict]:
             valid.append(rec)
     skipped = len(records) - len(valid)
     if skipped:
-        console.print(f"  [yellow]⚠ {skipped} records skipped (missing data)[/yellow]")
+        console.print(f"  [yellow][WARN] {skipped} records skipped (missing data)[/yellow]")
     console.print(f"  Valid: {len(valid)}/{len(records)}")
     return valid
 
@@ -228,7 +227,7 @@ def evaluate_single_record(
 def run_evaluation(
     dataset_path: Path,
     metric_names: list[str] = None,
-    judge_model: str = "gemini-3.1-pro-preview", #"gemini-2.5-flash"
+    judge_model: str = "gemini-3.1-pro-preview",
     max_records: int = None,
     output_dir: Path = None,
     checkpoint_every: int = 5,
@@ -249,7 +248,7 @@ def run_evaluation(
         existing_results: Already computed results (for resume)
     """
     if not RAGAS_AVAILABLE:
-        console.print("[bold red]❌ RAGAS not installed! pip install ragas[/bold red]")
+        console.print("[bold red][ERROR] RAGAS not installed! pip install ragas[/bold red]")
         sys.exit(1)
 
     metric_names = metric_names or ["clinical_comprehensiveness", "clinical_validity", "contradiction_rate", "answer_relevancy", "context_precision"]
@@ -257,7 +256,7 @@ def run_evaluation(
     use_vertex = os.getenv("USE_VERTEXAI", "false").lower() in ("true", "1", "yes")
 
     if not api_keys and not use_vertex:
-        console.print("[bold red]❌ No API keys configured and USE_VERTEXAI not enabled![/bold red]")
+        console.print("[bold red][ERROR] No API keys configured and USE_VERTEXAI not enabled![/bold red]")
         sys.exit(1)
 
     # ── Output directory ──
@@ -282,7 +281,7 @@ def run_evaluation(
 
     if max_records and len(records) > max_records:
         records = records[:max_records]
-        console.print(f"  [yellow]⚠ Limitato a {max_records} record[/yellow]")
+        console.print(f"  [yellow][WARN] Limited to {max_records} records[/yellow]")
 
     if not records:
         console.print("[bold red]No valid records![/bold red]")
@@ -324,9 +323,9 @@ def run_evaluation(
             m_obj = all_metrics[name]
             metrics.append(m_obj)
             metric_name_mapping[name] = m_obj.name
-            console.print(f"  [cyan]✓ Metric: {name}[/cyan]")
+            console.print(f"  [cyan][OK] Metric: {name}[/cyan]")
         else:
-            console.print(f"  [yellow]⚠ Unknown metric: {name}[/yellow]")
+            console.print(f"  [yellow][WARN] Unknown metric: {name}[/yellow]")
 
     if not metrics:
         console.print("[bold red]No valid metrics![/bold red]")
@@ -382,10 +381,10 @@ def run_evaluation(
             # Print scores
             scores_str = " | ".join(f"{k}: {v:.3f}" if v is not None else f"{k}: N/A"
                                      for k, v in scores.items())
-            console.print(f"    [green]✓[/green] {scores_str} ({elapsed:.1f}s)")
+            console.print(f"    [green][OK][/green] {scores_str} ({elapsed:.1f}s)")
 
         except Exception as e:
-            console.print(f"    [red]✗ Error: {e}[/red]")
+            console.print(f"    [red][ERROR] {e}[/red]")
             errors.append({
                 "index": i,
                 "hadm_id": hadm_id,
@@ -560,7 +559,7 @@ def run_evaluation(
 
 def main():
     parser = argparse.ArgumentParser(
-        description="📊 RAGAS Evaluator v2 — Clinical Agentic Pipeline",
+        description="RAGAS Evaluator v2 — Clinical Agentic Pipeline",
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog="""\
 Esempi:
@@ -593,7 +592,7 @@ Esempi:
     parser.add_argument(
         "--judge-model",
         type=str,
-        default="gemini-3.1-pro-preview", #"gemini-2.5-flash"
+        default="gemini-3.1-pro-preview",
         help="Gemini model for judge",
     )
     parser.add_argument(

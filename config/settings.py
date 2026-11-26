@@ -50,6 +50,7 @@ class SimilarityDefaults:
     pool_size: int = 200
     # Weights: [diagnosis, numeric, categorical]
     weights: List[float] = field(default_factory=lambda: [0.40, 0.40, 0.20])
+    exclude_same_subject: bool = True
 
 
 @dataclass

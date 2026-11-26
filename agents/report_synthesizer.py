@@ -128,6 +128,6 @@ class ReportSynthesizer:
         """Simple text concatenation on LLM synthesis failure."""
         output = "--- CLINICAL REPORT (Automatic Merge) ---\n\n"
         for topic, text in results.items():
-            output += f"【 {topic.upper()} 】\n{text}\n\n"
+            output += f"[{topic.upper()}]\n{text}\n\n"
         return output
 
