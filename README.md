@@ -27,7 +27,6 @@ The codebase is organized into modular packages and execution utilities:
 ```text
 github/
 ├── agents/                           # Multi-Agent Framework
-│   ├── __init__.py
 │   ├── context_constructor.py        # Assembles structured clinical evidence & cohort timelines
 │   ├── data_gatherer.py              # Interfaces with Milvus DB & preprocessed clinical records
 │   ├── orchestrator.py               # Coordinates query routing, specialist execution & synthesis
@@ -36,11 +35,9 @@ github/
 │   └── specialist_llm.py             # Interface for LLM-driven domain specialists (Gemini/Gemma)
 │
 ├── config/                           # System Configuration
-│   ├── __init__.py
 │   └── settings.py                   # Centralized settings (LLM models, Milvus params, feature maps)
 │
 ├── core/                             # Core Execution Pipeline & CLI
-│   ├── __init__.py
 │   ├── main.py                       # CLI entry point for clinical consultations
 │   └── pipeline.py                   # ClinicalPipeline orchestrating end-to-end execution
 │
@@ -57,8 +54,7 @@ github/
 │   ├── results_orchestrator_eval.csv # Orchestrator & Similarity retrieval evaluation (100 / 70 active cases)
 │   ├── results_jaccard_thresholds.json # Multi-threshold Jaccard sensitivity data (0.2 to 0.5)
 │   ├── results_fasttext_vs_tfidf.json # FastText vs TF-IDF retrieval benchmark (100 patients)
-│   ├── results_statistical_analysis.json # Computed statistical summary (SE, CIs, p-values)
-│   └── results_statistical_report.md # Human-readable statistical report and LaTeX tables
+│   └── results_statistical_analysis.json # Computed statistical summary (SE, CIs, p-values)
 │
 └── README.md                         # Project documentation
 ```
