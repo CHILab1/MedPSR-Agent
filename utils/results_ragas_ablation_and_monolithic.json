@@ -1,0 +1,2123 @@
+{
+  "title": "Ablation Study Gemma 31B Monolithic & Pipeline No Similarity",
+  "generated_at": "2026-09-30T15:21:27.573760",
+  "metrics_included": [
+    "answer_relevancy",
+    "clinical_validity",
+    "context_precision"
+  ],
+  "gemma31b_monolithic": {
+    "metrics_summary": {
+      "answer_relevancy": {
+        "mean": 0.7342,
+        "std": 0.0563,
+        "median": 0.7422,
+        "min": 0.529,
+        "max": 0.8807,
+        "count": 100
+      },
+      "clinical_validity": {
+        "mean": 0.8525,
+        "std": 0.2545,
+        "median": 1.0,
+        "min": 0.0,
+        "max": 1.0,
+        "count": 100
+      },
+      "context_precision": {
+        "mean": 0.7469,
+        "std": 0.2769,
+        "median": 0.8134,
+        "min": 0.0,
+        "max": 1.0,
+        "count": 100
+      }
+    },
+    "metrics_by_category": {
+      "comorbidity": {
+        "answer_relevancy": 0.7718,
+        "clinical_validity": 0.9825,
+        "context_precision": 0.6797
+      },
+      "info_extraction": {
+        "answer_relevancy": 0.7342,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      "mixed": {
+        "answer_relevancy": 0.6768,
+        "clinical_validity": 0.565,
+        "context_precision": 0.6074
+      },
+      "pharmacology": {
+        "answer_relevancy": 0.7294,
+        "clinical_validity": 0.92,
+        "context_precision": 0.8428
+      },
+      "similarity": {
+        "answer_relevancy": 0.7589,
+        "clinical_validity": 0.795,
+        "context_precision": 0.6044
+      }
+    },
+    "results": [
+      {
+        "index": 0,
+        "hadm_id": "TARGET_00",
+        "question_id": "Q01",
+        "question_category": "info_extraction",
+        "user_input": "Qual è l'età e il sesso di questo paziente?",
+        "answer_relevancy": 0.7413,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 1,
+        "hadm_id": "TARGET_01",
+        "question_id": "Q01",
+        "question_category": "info_extraction",
+        "user_input": "Qual è l'età e il sesso di questo paziente?",
+        "answer_relevancy": 0.7526,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 2,
+        "hadm_id": "TARGET_02",
+        "question_id": "Q02",
+        "question_category": "info_extraction",
+        "user_input": "Estrai i dati anagrafici principali del paziente dal database.",
+        "answer_relevancy": 0.7682,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 3,
+        "hadm_id": "TARGET_03",
+        "question_id": "Q02",
+        "question_category": "info_extraction",
+        "user_input": "Estrai i dati anagrafici principali del paziente dal database.",
+        "answer_relevancy": 0.7738,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 4,
+        "hadm_id": "TARGET_04",
+        "question_id": "Q03",
+        "question_category": "info_extraction",
+        "user_input": "Quali sono le informazioni di base del paziente (età, genere, data di ricovero)?",
+        "answer_relevancy": 0.7777,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 5,
+        "hadm_id": "TARGET_05",
+        "question_id": "Q03",
+        "question_category": "info_extraction",
+        "user_input": "Quali sono le informazioni di base del paziente (età, genere, data di ricovero)?",
+        "answer_relevancy": 0.7813,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 6,
+        "hadm_id": "TARGET_06",
+        "question_id": "Q04",
+        "question_category": "info_extraction",
+        "user_input": "Fornisci un riepilogo dei dati demografici di questo caso.",
+        "answer_relevancy": 0.7501,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 7,
+        "hadm_id": "TARGET_07",
+        "question_id": "Q04",
+        "question_category": "info_extraction",
+        "user_input": "Fornisci un riepilogo dei dati demografici di questo caso.",
+        "answer_relevancy": 0.7531,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 8,
+        "hadm_id": "TARGET_08",
+        "question_id": "Q05",
+        "question_category": "info_extraction",
+        "user_input": "Riassumi le caratteristiche generali del paziente.",
+        "answer_relevancy": 0.6559,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 9,
+        "hadm_id": "TARGET_09",
+        "question_id": "Q05",
+        "question_category": "info_extraction",
+        "user_input": "Riassumi le caratteristiche generali del paziente.",
+        "answer_relevancy": 0.7017,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 10,
+        "hadm_id": "TARGET_10",
+        "question_id": "Q06",
+        "question_category": "info_extraction",
+        "user_input": "Quali sono i dettagli di ammissione di questo ricovero?",
+        "answer_relevancy": 0.7358,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 11,
+        "hadm_id": "TARGET_11",
+        "question_id": "Q06",
+        "question_category": "info_extraction",
+        "user_input": "Quali sono i dettagli di ammissione di questo ricovero?",
+        "answer_relevancy": 0.7265,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 12,
+        "hadm_id": "TARGET_12",
+        "question_id": "Q07",
+        "question_category": "info_extraction",
+        "user_input": "Descrivi brevemente chi è il paziente in esame.",
+        "answer_relevancy": 0.7338,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 13,
+        "hadm_id": "TARGET_13",
+        "question_id": "Q07",
+        "question_category": "info_extraction",
+        "user_input": "Descrivi brevemente chi è il paziente in esame.",
+        "answer_relevancy": 0.7102,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 14,
+        "hadm_id": "TARGET_14",
+        "question_id": "Q08",
+        "question_category": "info_extraction",
+        "user_input": "Estrai i dettagli demografici essenziali per questo paziente.",
+        "answer_relevancy": 0.7672,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 15,
+        "hadm_id": "TARGET_15",
+        "question_id": "Q08",
+        "question_category": "info_extraction",
+        "user_input": "Estrai i dettagli demografici essenziali per questo paziente.",
+        "answer_relevancy": 0.7619,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 16,
+        "hadm_id": "TARGET_16",
+        "question_id": "Q09",
+        "question_category": "info_extraction",
+        "user_input": "Quali informazioni di base abbiamo su questo soggetto?",
+        "answer_relevancy": 0.6179,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 17,
+        "hadm_id": "TARGET_17",
+        "question_id": "Q09",
+        "question_category": "info_extraction",
+        "user_input": "Quali informazioni di base abbiamo su questo soggetto?",
+        "answer_relevancy": 0.6218,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 18,
+        "hadm_id": "TARGET_18",
+        "question_id": "Q10",
+        "question_category": "info_extraction",
+        "user_input": "Fai una lista dei dati anagrafici e di ricovero del paziente.",
+        "answer_relevancy": 0.781,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 19,
+        "hadm_id": "TARGET_19",
+        "question_id": "Q10",
+        "question_category": "info_extraction",
+        "user_input": "Fai una lista dei dati anagrafici e di ricovero del paziente.",
+        "answer_relevancy": 0.7722,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 20,
+        "hadm_id": "TARGET_20",
+        "question_id": "Q11",
+        "question_category": "comorbidity",
+        "user_input": "Quali sono le possibili comorbidità non ancora diagnosticate a questo paziente?",
+        "answer_relevancy": 0.7221,
+        "clinical_validity": 1.0,
+        "context_precision": 0.9406
+      },
+      {
+        "index": 21,
+        "hadm_id": "TARGET_21",
+        "question_id": "Q11",
+        "question_category": "comorbidity",
+        "user_input": "Quali sono le possibili comorbidità non ancora diagnosticate a questo paziente?",
+        "answer_relevancy": 0.7443,
+        "clinical_validity": 0.95,
+        "context_precision": 1.0
+      },
+      {
+        "index": 22,
+        "hadm_id": "TARGET_22",
+        "question_id": "Q12",
+        "question_category": "comorbidity",
+        "user_input": "Analizza le patologie presenti in questo caso clinico.",
+        "answer_relevancy": 0.7352,
+        "clinical_validity": 0.95,
+        "context_precision": 0.8243
+      },
+      {
+        "index": 23,
+        "hadm_id": "TARGET_23",
+        "question_id": "Q12",
+        "question_category": "comorbidity",
+        "user_input": "Analizza le patologie presenti in questo caso clinico.",
+        "answer_relevancy": 0.6917,
+        "clinical_validity": 1.0,
+        "context_precision": 0.8909
+      },
+      {
+        "index": 24,
+        "hadm_id": "TARGET_24",
+        "question_id": "Q13",
+        "question_category": "comorbidity",
+        "user_input": "Identifica i pattern di comorbidità e confrontali con pazienti simili nel database.",
+        "answer_relevancy": 0.7939,
+        "clinical_validity": 1.0,
+        "context_precision": 0.6622
+      },
+      {
+        "index": 25,
+        "hadm_id": "TARGET_25",
+        "question_id": "Q13",
+        "question_category": "comorbidity",
+        "user_input": "Identifica i pattern di comorbidità e confrontali con pazienti simili nel database.",
+        "answer_relevancy": 0.815,
+        "clinical_validity": 1.0,
+        "context_precision": 0.798
+      },
+      {
+        "index": 26,
+        "hadm_id": "TARGET_26",
+        "question_id": "Q14",
+        "question_category": "comorbidity",
+        "user_input": "Fai un'analisi approfondita su quali altre malattie potrebbero insorgere nel paziente.",
+        "answer_relevancy": 0.7528,
+        "clinical_validity": 1.0,
+        "context_precision": 0.7209
+      },
+      {
+        "index": 27,
+        "hadm_id": "TARGET_27",
+        "question_id": "Q14",
+        "question_category": "comorbidity",
+        "user_input": "Fai un'analisi approfondita su quali altre malattie potrebbero insorgere nel paziente.",
+        "answer_relevancy": 0.7656,
+        "clinical_validity": 0.75,
+        "context_precision": 0.8828
+      },
+      {
+        "index": 28,
+        "hadm_id": "TARGET_28",
+        "question_id": "Q15",
+        "question_category": "comorbidity",
+        "user_input": "Descrivi il quadro generale delle diagnosi attribuite al paziente durante il ricovero.",
+        "answer_relevancy": 0.7383,
+        "clinical_validity": 1.0,
+        "context_precision": 0.4881
+      },
+      {
+        "index": 29,
+        "hadm_id": "TARGET_29",
+        "question_id": "Q15",
+        "question_category": "comorbidity",
+        "user_input": "Descrivi il quadro generale delle diagnosi attribuite al paziente durante il ricovero.",
+        "answer_relevancy": 0.7422,
+        "clinical_validity": 1.0,
+        "context_precision": 0.4773
+      },
+      {
+        "index": 30,
+        "hadm_id": "TARGET_30",
+        "question_id": "Q16",
+        "question_category": "comorbidity",
+        "user_input": "Esistono correlazioni tra le diverse diagnosi di questo paziente e quelle di casi simili?",
+        "answer_relevancy": 0.7618,
+        "clinical_validity": 1.0,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 31,
+        "hadm_id": "TARGET_31",
+        "question_id": "Q16",
+        "question_category": "comorbidity",
+        "user_input": "Esistono correlazioni tra le diverse diagnosi di questo paziente e quelle di casi simili?",
+        "answer_relevancy": 0.7732,
+        "clinical_validity": 1.0,
+        "context_precision": 0.798
+      },
+      {
+        "index": 32,
+        "hadm_id": "TARGET_32",
+        "question_id": "Q17",
+        "question_category": "comorbidity",
+        "user_input": "Qual è la percentuale di decesso dei pazienti simili?",
+        "answer_relevancy": 0.8724,
+        "clinical_validity": 1.0,
+        "context_precision": 0.4816
+      },
+      {
+        "index": 33,
+        "hadm_id": "TARGET_33",
+        "question_id": "Q17",
+        "question_category": "comorbidity",
+        "user_input": "Qual è la percentuale di decesso dei pazienti simili?",
+        "answer_relevancy": 0.8807,
+        "clinical_validity": 1.0,
+        "context_precision": 0.1
+      },
+      {
+        "index": 34,
+        "hadm_id": "TARGET_34",
+        "question_id": "Q18",
+        "question_category": "comorbidity",
+        "user_input": "Elenca le condizioni cliniche secondarie che potrebbero influenzare il quadro del paziente.",
+        "answer_relevancy": 0.7582,
+        "clinical_validity": 1.0,
+        "context_precision": 0.7116
+      },
+      {
+        "index": 35,
+        "hadm_id": "TARGET_35",
+        "question_id": "Q18",
+        "question_category": "comorbidity",
+        "user_input": "Elenca le condizioni cliniche secondarie che potrebbero influenzare il quadro del paziente.",
+        "answer_relevancy": 0.7581,
+        "clinical_validity": 1.0,
+        "context_precision": 0.9094
+      },
+      {
+        "index": 36,
+        "hadm_id": "TARGET_36",
+        "question_id": "Q19",
+        "question_category": "comorbidity",
+        "user_input": "Analizza la complessità clinica del paziente basandoti sulle comorbidità e confronta con il database.",
+        "answer_relevancy": 0.7738,
+        "clinical_validity": 1.0,
+        "context_precision": 0.5402
+      },
+      {
+        "index": 37,
+        "hadm_id": "TARGET_37",
+        "question_id": "Q19",
+        "question_category": "comorbidity",
+        "user_input": "Analizza la complessità clinica del paziente basandoti sulle comorbidità e confronta con il database.",
+        "answer_relevancy": 0.7767,
+        "clinical_validity": 1.0,
+        "context_precision": 0.8543
+      },
+      {
+        "index": 38,
+        "hadm_id": "TARGET_38",
+        "question_id": "Q20",
+        "question_category": "comorbidity",
+        "user_input": "Quali pattern diagnostici secondari emergono dalle cartelle cliniche?",
+        "answer_relevancy": 0.7903,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 39,
+        "hadm_id": "TARGET_39",
+        "question_id": "Q20",
+        "question_category": "comorbidity",
+        "user_input": "Quali pattern diagnostici secondari emergono dalle cartelle cliniche?",
+        "answer_relevancy": 0.7889,
+        "clinical_validity": 1.0,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 40,
+        "hadm_id": "TARGET_40",
+        "question_id": "Q21",
+        "question_category": "pharmacology",
+        "user_input": "Quali consigli farmacologici daresti per questo paziente?",
+        "answer_relevancy": 0.7343,
+        "clinical_validity": 1.0,
+        "context_precision": 0.9192
+      },
+      {
+        "index": 41,
+        "hadm_id": "TARGET_41",
+        "question_id": "Q21",
+        "question_category": "pharmacology",
+        "user_input": "Quali consigli farmacologici daresti per questo paziente?",
+        "answer_relevancy": 0.7546,
+        "clinical_validity": 0.85,
+        "context_precision": 1.0
+      },
+      {
+        "index": 42,
+        "hadm_id": "TARGET_42",
+        "question_id": "Q22",
+        "question_category": "pharmacology",
+        "user_input": "Qual è la terapia farmacologica ottimale basata sulla storia clinica?",
+        "answer_relevancy": 0.7247,
+        "clinical_validity": 1.0,
+        "context_precision": 0.6871
+      },
+      {
+        "index": 43,
+        "hadm_id": "TARGET_43",
+        "question_id": "Q22",
+        "question_category": "pharmacology",
+        "user_input": "Qual è la terapia farmacologica ottimale basata sulla storia clinica?",
+        "answer_relevancy": 0.6995,
+        "clinical_validity": 1.0,
+        "context_precision": 0.8846
+      },
+      {
+        "index": 44,
+        "hadm_id": "TARGET_44",
+        "question_id": "Q23",
+        "question_category": "pharmacology",
+        "user_input": "Consiglia dei farmaci appropriati per trattare le patologie di questo paziente.",
+        "answer_relevancy": 0.7422,
+        "clinical_validity": 1.0,
+        "context_precision": 0.9192
+      },
+      {
+        "index": 45,
+        "hadm_id": "TARGET_45",
+        "question_id": "Q23",
+        "question_category": "pharmacology",
+        "user_input": "Consiglia dei farmaci appropriati per trattare le patologie di questo paziente.",
+        "answer_relevancy": 0.7231,
+        "clinical_validity": 0.95,
+        "context_precision": 0.9406
+      },
+      {
+        "index": 46,
+        "hadm_id": "TARGET_46",
+        "question_id": "Q24",
+        "question_category": "pharmacology",
+        "user_input": "Quali sono le raccomandazioni terapeutiche per questo specifico quadro clinico?",
+        "answer_relevancy": 0.6711,
+        "clinical_validity": 1.0,
+        "context_precision": 0.6969
+      },
+      {
+        "index": 47,
+        "hadm_id": "TARGET_47",
+        "question_id": "Q24",
+        "question_category": "pharmacology",
+        "user_input": "Quali sono le raccomandazioni terapeutiche per questo specifico quadro clinico?",
+        "answer_relevancy": 0.7169,
+        "clinical_validity": 0.75,
+        "context_precision": 1.0
+      },
+      {
+        "index": 48,
+        "hadm_id": "TARGET_48",
+        "question_id": "Q25",
+        "question_category": "pharmacology",
+        "user_input": "Fornisci suggerimenti sull'uso dei farmaci per questo paziente.",
+        "answer_relevancy": 0.7308,
+        "clinical_validity": 0.85,
+        "context_precision": 0.8321
+      },
+      {
+        "index": 49,
+        "hadm_id": "TARGET_49",
+        "question_id": "Q25",
+        "question_category": "pharmacology",
+        "user_input": "Fornisci suggerimenti sull'uso dei farmaci per questo paziente.",
+        "answer_relevancy": 0.7003,
+        "clinical_validity": 0.5,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 50,
+        "hadm_id": "TARGET_50",
+        "question_id": "Q26",
+        "question_category": "pharmacology",
+        "user_input": "Quale regime farmacologico sarebbe più indicato per questo caso?",
+        "answer_relevancy": 0.7583,
+        "clinical_validity": 1.0,
+        "context_precision": 0.7227
+      },
+      {
+        "index": 51,
+        "hadm_id": "TARGET_51",
+        "question_id": "Q26",
+        "question_category": "pharmacology",
+        "user_input": "Quale regime farmacologico sarebbe più indicato per questo caso?",
+        "answer_relevancy": 0.7326,
+        "clinical_validity": 1.0,
+        "context_precision": 0.8692
+      },
+      {
+        "index": 52,
+        "hadm_id": "TARGET_52",
+        "question_id": "Q27",
+        "question_category": "pharmacology",
+        "user_input": "Ci sono interazioni farmacologiche da evitare per questo paziente?",
+        "answer_relevancy": 0.7546,
+        "clinical_validity": 1.0,
+        "context_precision": 0.9151
+      },
+      {
+        "index": 53,
+        "hadm_id": "TARGET_53",
+        "question_id": "Q27",
+        "question_category": "pharmacology",
+        "user_input": "Ci sono interazioni farmacologiche da evitare per questo paziente?",
+        "answer_relevancy": 0.7717,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 54,
+        "hadm_id": "TARGET_54",
+        "question_id": "Q28",
+        "question_category": "pharmacology",
+        "user_input": "Indica una possibile strategia farmacologica per migliorare l'esito clinico.",
+        "answer_relevancy": 0.693,
+        "clinical_validity": 1.0,
+        "context_precision": 0.737
+      },
+      {
+        "index": 55,
+        "hadm_id": "TARGET_55",
+        "question_id": "Q28",
+        "question_category": "pharmacology",
+        "user_input": "Indica una possibile strategia farmacologica per migliorare l'esito clinico.",
+        "answer_relevancy": 0.7408,
+        "clinical_validity": 0.5,
+        "context_precision": 0.7997
+      },
+      {
+        "index": 56,
+        "hadm_id": "TARGET_56",
+        "question_id": "Q29",
+        "question_category": "pharmacology",
+        "user_input": "Quali farmaci dovrebbero essere considerati prioritari per questo paziente?",
+        "answer_relevancy": 0.7662,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 57,
+        "hadm_id": "TARGET_57",
+        "question_id": "Q29",
+        "question_category": "pharmacology",
+        "user_input": "Quali farmaci dovrebbero essere considerati prioritari per questo paziente?",
+        "answer_relevancy": 0.7568,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 58,
+        "hadm_id": "TARGET_58",
+        "question_id": "Q30",
+        "question_category": "pharmacology",
+        "user_input": "Sulla base delle diagnosi, quali sono i principali consigli terapeutici?",
+        "answer_relevancy": 0.6994,
+        "clinical_validity": 1.0,
+        "context_precision": 0.9318
+      },
+      {
+        "index": 59,
+        "hadm_id": "TARGET_59",
+        "question_id": "Q30",
+        "question_category": "pharmacology",
+        "user_input": "Sulla base delle diagnosi, quali sono i principali consigli terapeutici?",
+        "answer_relevancy": 0.7169,
+        "clinical_validity": 1.0,
+        "context_precision": 0.744
+      },
+      {
+        "index": 60,
+        "hadm_id": "TARGET_60",
+        "question_id": "Q31",
+        "question_category": "similarity",
+        "user_input": "Confronta questo paziente con casi simili nel database per identificare pattern comuni.",
+        "answer_relevancy": 0.7991,
+        "clinical_validity": 1.0,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 61,
+        "hadm_id": "TARGET_61",
+        "question_id": "Q31",
+        "question_category": "similarity",
+        "user_input": "Confronta questo paziente con casi simili nel database per identificare pattern comuni.",
+        "answer_relevancy": 0.7479,
+        "clinical_validity": 1.0,
+        "context_precision": 0.8088
+      },
+      {
+        "index": 62,
+        "hadm_id": "TARGET_62",
+        "question_id": "Q32",
+        "question_category": "similarity",
+        "user_input": "Come si posiziona questo paziente rispetto a soggetti con diagnosi analoghe?",
+        "answer_relevancy": 0.6865,
+        "clinical_validity": 0.9,
+        "context_precision": 0.6121
+      },
+      {
+        "index": 63,
+        "hadm_id": "TARGET_63",
+        "question_id": "Q32",
+        "question_category": "similarity",
+        "user_input": "Come si posiziona questo paziente rispetto a soggetti con diagnosi analoghe?",
+        "answer_relevancy": 0.7308,
+        "clinical_validity": 0.75,
+        "context_precision": 0.6263
+      },
+      {
+        "index": 64,
+        "hadm_id": "TARGET_64",
+        "question_id": "Q33",
+        "question_category": "similarity",
+        "user_input": "Analizza le differenze e le somiglianze tra questo paziente e i suoi simili.",
+        "answer_relevancy": 0.7839,
+        "clinical_validity": 1.0,
+        "context_precision": 0.1
+      },
+      {
+        "index": 65,
+        "hadm_id": "TARGET_65",
+        "question_id": "Q33",
+        "question_category": "similarity",
+        "user_input": "Analizza le differenze e le somiglianze tra questo paziente e i suoi simili.",
+        "answer_relevancy": 0.7874,
+        "clinical_validity": 1.0,
+        "context_precision": 0.538
+      },
+      {
+        "index": 66,
+        "hadm_id": "TARGET_66",
+        "question_id": "Q34",
+        "question_category": "similarity",
+        "user_input": "Quali sono i risultati clinici tipici per pazienti simili a questo?",
+        "answer_relevancy": 0.7398,
+        "clinical_validity": 0.85,
+        "context_precision": 0.744
+      },
+      {
+        "index": 67,
+        "hadm_id": "TARGET_67",
+        "question_id": "Q34",
+        "question_category": "similarity",
+        "user_input": "Quali sono i risultati clinici tipici per pazienti simili a questo?",
+        "answer_relevancy": 0.7276,
+        "clinical_validity": 0.5,
+        "context_precision": 0.6135
+      },
+      {
+        "index": 68,
+        "hadm_id": "TARGET_68",
+        "question_id": "Q35",
+        "question_category": "similarity",
+        "user_input": "Confronta il decorso di questo paziente con quello di altri casi comparabili.",
+        "answer_relevancy": 0.7667,
+        "clinical_validity": 1.0,
+        "context_precision": 0.798
+      },
+      {
+        "index": 69,
+        "hadm_id": "TARGET_69",
+        "question_id": "Q35",
+        "question_category": "similarity",
+        "user_input": "Confronta il decorso di questo paziente con quello di altri casi comparabili.",
+        "answer_relevancy": 0.7636,
+        "clinical_validity": 0.5,
+        "context_precision": 0.4864
+      },
+      {
+        "index": 70,
+        "hadm_id": "TARGET_70",
+        "question_id": "Q36",
+        "question_category": "similarity",
+        "user_input": "Esistono pazienti nel database con un quadro clinico quasi identico?",
+        "answer_relevancy": 0.8048,
+        "clinical_validity": 1.0,
+        "context_precision": 0.3626
+      },
+      {
+        "index": 71,
+        "hadm_id": "TARGET_71",
+        "question_id": "Q36",
+        "question_category": "similarity",
+        "user_input": "Esistono pazienti nel database con un quadro clinico quasi identico?",
+        "answer_relevancy": 0.8143,
+        "clinical_validity": 0.5,
+        "context_precision": 0.6808
+      },
+      {
+        "index": 72,
+        "hadm_id": "TARGET_72",
+        "question_id": "Q37",
+        "question_category": "similarity",
+        "user_input": "Usa i dati dei pazienti simili per valutare la tipicità di questo caso.",
+        "answer_relevancy": 0.7497,
+        "clinical_validity": 0.85,
+        "context_precision": 0.7481
+      },
+      {
+        "index": 73,
+        "hadm_id": "TARGET_73",
+        "question_id": "Q37",
+        "question_category": "similarity",
+        "user_input": "Usa i dati dei pazienti simili per valutare la tipicità di questo caso.",
+        "answer_relevancy": 0.7422,
+        "clinical_validity": 0.85,
+        "context_precision": 0.5494
+      },
+      {
+        "index": 74,
+        "hadm_id": "TARGET_74",
+        "question_id": "Q38",
+        "question_category": "similarity",
+        "user_input": "In che modo questo paziente si discosta dai pattern standard di pazienti simili?",
+        "answer_relevancy": 0.7552,
+        "clinical_validity": 1.0,
+        "context_precision": 0.9063
+      },
+      {
+        "index": 75,
+        "hadm_id": "TARGET_75",
+        "question_id": "Q38",
+        "question_category": "similarity",
+        "user_input": "In che modo questo paziente si discosta dai pattern standard di pazienti simili?",
+        "answer_relevancy": 0.6988,
+        "clinical_validity": 1.0,
+        "context_precision": 0.5522
+      },
+      {
+        "index": 76,
+        "hadm_id": "TARGET_76",
+        "question_id": "Q39",
+        "question_category": "similarity",
+        "user_input": "Quali strategie terapeutiche hanno funzionato meglio in pazienti simili a questo?",
+        "answer_relevancy": 0.7731,
+        "clinical_validity": 0.25,
+        "context_precision": 0.798
+      },
+      {
+        "index": 77,
+        "hadm_id": "TARGET_77",
+        "question_id": "Q39",
+        "question_category": "similarity",
+        "user_input": "Quali strategie terapeutiche hanno funzionato meglio in pazienti simili a questo?",
+        "answer_relevancy": 0.7302,
+        "clinical_validity": 0.75,
+        "context_precision": 0.744
+      },
+      {
+        "index": 78,
+        "hadm_id": "TARGET_78",
+        "question_id": "Q40",
+        "question_category": "similarity",
+        "user_input": "Esegui un'analisi comparativa tra questo paziente e la popolazione simile nel database.",
+        "answer_relevancy": 0.7797,
+        "clinical_validity": 0.25,
+        "context_precision": 0.6097
+      },
+      {
+        "index": 79,
+        "hadm_id": "TARGET_79",
+        "question_id": "Q40",
+        "question_category": "similarity",
+        "user_input": "Esegui un'analisi comparativa tra questo paziente e la popolazione simile nel database.",
+        "answer_relevancy": 0.7976,
+        "clinical_validity": 0.95,
+        "context_precision": 0.5523
+      },
+      {
+        "index": 80,
+        "hadm_id": "TARGET_80",
+        "question_id": "Q41",
+        "question_category": "mixed",
+        "user_input": "Riassumi le terapie e le comorbidità di questo paziente.",
+        "answer_relevancy": 0.6369,
+        "clinical_validity": 0.5,
+        "context_precision": 0.3626
+      },
+      {
+        "index": 81,
+        "hadm_id": "TARGET_81",
+        "question_id": "Q41",
+        "question_category": "mixed",
+        "user_input": "Riassumi le terapie e le comorbidità di questo paziente.",
+        "answer_relevancy": 0.7373,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 82,
+        "hadm_id": "TARGET_82",
+        "question_id": "Q42",
+        "question_category": "mixed",
+        "user_input": "Cosa suggeriscono i dati dei pazienti simili riguardo al trattamento di questo caso?",
+        "answer_relevancy": 0.7465,
+        "clinical_validity": 0.25,
+        "context_precision": 0.744
+      },
+      {
+        "index": 83,
+        "hadm_id": "TARGET_83",
+        "question_id": "Q42",
+        "question_category": "mixed",
+        "user_input": "Cosa suggeriscono i dati dei pazienti simili riguardo al trattamento di questo caso?",
+        "answer_relevancy": 0.6465,
+        "clinical_validity": 1.0,
+        "context_precision": 0.0
+      },
+      {
+        "index": 84,
+        "hadm_id": "TARGET_84",
+        "question_id": "Q43",
+        "question_category": "mixed",
+        "user_input": "Estrai info su farmaci e diagnosi e confrontale con la media del database.",
+        "answer_relevancy": 0.6856,
+        "clinical_validity": 0.5,
+        "context_precision": 0.8179
+      },
+      {
+        "index": 85,
+        "hadm_id": "TARGET_85",
+        "question_id": "Q43",
+        "question_category": "mixed",
+        "user_input": "Estrai info su farmaci e diagnosi e confrontale con la media del database.",
+        "answer_relevancy": 0.6283,
+        "clinical_validity": 0.9,
+        "context_precision": 1.0
+      },
+      {
+        "index": 86,
+        "hadm_id": "TARGET_86",
+        "question_id": "Q44",
+        "question_category": "mixed",
+        "user_input": "Quali sono i punti critici del quadro clinico e farmacologico di questo paziente?",
+        "answer_relevancy": 0.7541,
+        "clinical_validity": 0.75,
+        "context_precision": 0.625
+      },
+      {
+        "index": 87,
+        "hadm_id": "TARGET_87",
+        "question_id": "Q44",
+        "question_category": "mixed",
+        "user_input": "Quali sono i punti critici del quadro clinico e farmacologico di questo paziente?",
+        "answer_relevancy": 0.7645,
+        "clinical_validity": 0.75,
+        "context_precision": 0.7702
+      },
+      {
+        "index": 88,
+        "hadm_id": "TARGET_88",
+        "question_id": "Q45",
+        "question_category": "mixed",
+        "user_input": "Fornisci un riassunto approfondito di tutto ciò che sai sul paziente.",
+        "answer_relevancy": 0.7076,
+        "clinical_validity": 0.5,
+        "context_precision": 0.1
+      },
+      {
+        "index": 89,
+        "hadm_id": "TARGET_89",
+        "question_id": "Q45",
+        "question_category": "mixed",
+        "user_input": "Fornisci un riassunto approfondito di tutto ciò che sai sul paziente.",
+        "answer_relevancy": 0.707,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 90,
+        "hadm_id": "TARGET_90",
+        "question_id": "Q46",
+        "question_category": "mixed",
+        "user_input": "Analizza le patologie del paziente e consiglia una terapia basata su casi analoghi.",
+        "answer_relevancy": 0.7205,
+        "clinical_validity": 0.9,
+        "context_precision": 0.1
+      },
+      {
+        "index": 91,
+        "hadm_id": "TARGET_91",
+        "question_id": "Q46",
+        "question_category": "mixed",
+        "user_input": "Analizza le patologie del paziente e consiglia una terapia basata su casi analoghi.",
+        "answer_relevancy": 0.5745,
+        "clinical_validity": 0.5,
+        "context_precision": 0.8268
+      },
+      {
+        "index": 92,
+        "hadm_id": "TARGET_92",
+        "question_id": "Q47",
+        "question_category": "mixed",
+        "user_input": "Quali sono i dati salienti del paziente e quali pattern di rischio emergono dal database?",
+        "answer_relevancy": 0.6649,
+        "clinical_validity": 1.0,
+        "context_precision": 0.3626
+      },
+      {
+        "index": 93,
+        "hadm_id": "TARGET_93",
+        "question_id": "Q47",
+        "question_category": "mixed",
+        "user_input": "Quali sono i dati salienti del paziente e quali pattern di rischio emergono dal database?",
+        "answer_relevancy": 0.753,
+        "clinical_validity": 0.0,
+        "context_precision": 0.8085
+      },
+      {
+        "index": 94,
+        "hadm_id": "TARGET_94",
+        "question_id": "Q48",
+        "question_category": "mixed",
+        "user_input": "Analizza i parametri di laboratorio e i segni vitali critici di questo paziente confrontandoli con pazienti simili",
+        "answer_relevancy": 0.6886,
+        "clinical_validity": 0.25,
+        "context_precision": 0.6141
+      },
+      {
+        "index": 95,
+        "hadm_id": "TARGET_95",
+        "question_id": "Q48",
+        "question_category": "mixed",
+        "user_input": "Analizza i parametri di laboratorio e i segni vitali critici di questo paziente confrontandoli con pazienti simili",
+        "answer_relevancy": 0.529,
+        "clinical_validity": 0.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 96,
+        "hadm_id": "TARGET_96",
+        "question_id": "Q49",
+        "question_category": "mixed",
+        "user_input": "Confronta il profilo di rischio di questo paziente con casi clinici affini nel database.",
+        "answer_relevancy": 0.699,
+        "clinical_validity": 0.5,
+        "context_precision": 0.0
+      },
+      {
+        "index": 97,
+        "hadm_id": "TARGET_97",
+        "question_id": "Q49",
+        "question_category": "mixed",
+        "user_input": "Confronta il profilo di rischio di questo paziente con casi clinici affini nel database.",
+        "answer_relevancy": 0.5772,
+        "clinical_validity": 0.25,
+        "context_precision": 1.0
+      },
+      {
+        "index": 98,
+        "hadm_id": "TARGET_98",
+        "question_id": "Q50",
+        "question_category": "mixed",
+        "user_input": "Quali sono le informazioni chiave da considerare per la gestione complessiva di questo paziente?",
+        "answer_relevancy": 0.714,
+        "clinical_validity": 0.25,
+        "context_precision": 0.9172
+      },
+      {
+        "index": 99,
+        "hadm_id": "TARGET_99",
+        "question_id": "Q50",
+        "question_category": "mixed",
+        "user_input": "Quali sono le informazioni chiave da considerare per la gestione complessiva di questo paziente?",
+        "answer_relevancy": 0.6005,
+        "clinical_validity": 0.5,
+        "context_precision": 0.1
+      }
+    ]
+  },
+  "pipeline_no_similarity": {
+    "metrics_summary": {
+      "answer_relevancy": {
+        "mean": 0.7267,
+        "std": 0.1728,
+        "median": 0.76,
+        "min": 0.0,
+        "max": 0.8692,
+        "count": 100
+      },
+      "clinical_validity": {
+        "mean": 0.853,
+        "std": 0.2176,
+        "median": 1.0,
+        "min": 0.25,
+        "max": 1.0,
+        "count": 100
+      },
+      "context_precision": {
+        "mean": 0.7623,
+        "std": 0.3661,
+        "median": 1.0,
+        "min": 0.0,
+        "max": 1.0,
+        "count": 100
+      }
+    },
+    "metrics_by_category": {
+      "comorbidity": {
+        "answer_relevancy": 0.7758,
+        "clinical_validity": 0.93,
+        "context_precision": 0.9
+      },
+      "info_extraction": {
+        "answer_relevancy": 0.7711,
+        "clinical_validity": 0.9925,
+        "context_precision": 1.0
+      },
+      "mixed": {
+        "answer_relevancy": 0.677,
+        "clinical_validity": 0.6775,
+        "context_precision": 0.5151
+      },
+      "pharmacology": {
+        "answer_relevancy": 0.7582,
+        "clinical_validity": 0.8775,
+        "context_precision": 0.9282
+      },
+      "similarity": {
+        "answer_relevancy": 0.6514,
+        "clinical_validity": 0.7875,
+        "context_precision": 0.4683
+      }
+    },
+    "results": [
+      {
+        "index": 0,
+        "hadm_id": "TARGET_00",
+        "question_id": "Q01",
+        "question_category": "info_extraction",
+        "user_input": "Qual è l'età e il sesso di questo paziente?",
+        "answer_relevancy": 0.8315,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 1,
+        "hadm_id": "TARGET_01",
+        "question_id": "Q01",
+        "question_category": "info_extraction",
+        "user_input": "Qual è l'età e il sesso di questo paziente?",
+        "answer_relevancy": 0.852,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 2,
+        "hadm_id": "TARGET_02",
+        "question_id": "Q02",
+        "question_category": "info_extraction",
+        "user_input": "Estrai i dati anagrafici principali del paziente dal database.",
+        "answer_relevancy": 0.7481,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 3,
+        "hadm_id": "TARGET_03",
+        "question_id": "Q02",
+        "question_category": "info_extraction",
+        "user_input": "Estrai i dati anagrafici principali del paziente dal database.",
+        "answer_relevancy": 0.7569,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 4,
+        "hadm_id": "TARGET_04",
+        "question_id": "Q03",
+        "question_category": "info_extraction",
+        "user_input": "Quali sono le informazioni di base del paziente (età, genere, data di ricovero)?",
+        "answer_relevancy": 0.8625,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 5,
+        "hadm_id": "TARGET_05",
+        "question_id": "Q03",
+        "question_category": "info_extraction",
+        "user_input": "Quali sono le informazioni di base del paziente (età, genere, data di ricovero)?",
+        "answer_relevancy": 0.7833,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 6,
+        "hadm_id": "TARGET_06",
+        "question_id": "Q04",
+        "question_category": "info_extraction",
+        "user_input": "Fornisci un riepilogo dei dati demografici di questo caso.",
+        "answer_relevancy": 0.8302,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 7,
+        "hadm_id": "TARGET_07",
+        "question_id": "Q04",
+        "question_category": "info_extraction",
+        "user_input": "Fornisci un riepilogo dei dati demografici di questo caso.",
+        "answer_relevancy": 0.806,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 8,
+        "hadm_id": "TARGET_08",
+        "question_id": "Q05",
+        "question_category": "info_extraction",
+        "user_input": "Riassumi le caratteristiche generali del paziente.",
+        "answer_relevancy": 0.7828,
+        "clinical_validity": 0.85,
+        "context_precision": 1.0
+      },
+      {
+        "index": 9,
+        "hadm_id": "TARGET_09",
+        "question_id": "Q05",
+        "question_category": "info_extraction",
+        "user_input": "Riassumi le caratteristiche generali del paziente.",
+        "answer_relevancy": 0.7597,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 10,
+        "hadm_id": "TARGET_10",
+        "question_id": "Q06",
+        "question_category": "info_extraction",
+        "user_input": "Quali sono i dettagli di ammissione di questo ricovero?",
+        "answer_relevancy": 0.7218,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 11,
+        "hadm_id": "TARGET_11",
+        "question_id": "Q06",
+        "question_category": "info_extraction",
+        "user_input": "Quali sono i dettagli di ammissione di questo ricovero?",
+        "answer_relevancy": 0.6863,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 12,
+        "hadm_id": "TARGET_12",
+        "question_id": "Q07",
+        "question_category": "info_extraction",
+        "user_input": "Descrivi brevemente chi è il paziente in esame.",
+        "answer_relevancy": 0.7741,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 13,
+        "hadm_id": "TARGET_13",
+        "question_id": "Q07",
+        "question_category": "info_extraction",
+        "user_input": "Descrivi brevemente chi è il paziente in esame.",
+        "answer_relevancy": 0.7938,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 14,
+        "hadm_id": "TARGET_14",
+        "question_id": "Q08",
+        "question_category": "info_extraction",
+        "user_input": "Estrai i dettagli demografici essenziali per questo paziente.",
+        "answer_relevancy": 0.7582,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 15,
+        "hadm_id": "TARGET_15",
+        "question_id": "Q08",
+        "question_category": "info_extraction",
+        "user_input": "Estrai i dettagli demografici essenziali per questo paziente.",
+        "answer_relevancy": 0.7548,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 16,
+        "hadm_id": "TARGET_16",
+        "question_id": "Q09",
+        "question_category": "info_extraction",
+        "user_input": "Quali informazioni di base abbiamo su questo soggetto?",
+        "answer_relevancy": 0.6702,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 17,
+        "hadm_id": "TARGET_17",
+        "question_id": "Q09",
+        "question_category": "info_extraction",
+        "user_input": "Quali informazioni di base abbiamo su questo soggetto?",
+        "answer_relevancy": 0.6589,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 18,
+        "hadm_id": "TARGET_18",
+        "question_id": "Q10",
+        "question_category": "info_extraction",
+        "user_input": "Fai una lista dei dati anagrafici e di ricovero del paziente.",
+        "answer_relevancy": 0.8084,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 19,
+        "hadm_id": "TARGET_19",
+        "question_id": "Q10",
+        "question_category": "info_extraction",
+        "user_input": "Fai una lista dei dati anagrafici e di ricovero del paziente.",
+        "answer_relevancy": 0.7817,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 20,
+        "hadm_id": "TARGET_20",
+        "question_id": "Q11",
+        "question_category": "comorbidity",
+        "user_input": "Quali sono le possibili comorbidità non ancora diagnosticate a questo paziente?",
+        "answer_relevancy": 0.786,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 21,
+        "hadm_id": "TARGET_21",
+        "question_id": "Q11",
+        "question_category": "comorbidity",
+        "user_input": "Quali sono le possibili comorbidità non ancora diagnosticate a questo paziente?",
+        "answer_relevancy": 0.7884,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 22,
+        "hadm_id": "TARGET_22",
+        "question_id": "Q12",
+        "question_category": "comorbidity",
+        "user_input": "Analizza le patologie presenti in questo caso clinico.",
+        "answer_relevancy": 0.7506,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 23,
+        "hadm_id": "TARGET_23",
+        "question_id": "Q12",
+        "question_category": "comorbidity",
+        "user_input": "Analizza le patologie presenti in questo caso clinico.",
+        "answer_relevancy": 0.7491,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 24,
+        "hadm_id": "TARGET_24",
+        "question_id": "Q13",
+        "question_category": "comorbidity",
+        "user_input": "Identifica i pattern di comorbidità e confrontali con pazienti simili nel database.",
+        "answer_relevancy": 0.7906,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 25,
+        "hadm_id": "TARGET_25",
+        "question_id": "Q13",
+        "question_category": "comorbidity",
+        "user_input": "Identifica i pattern di comorbidità e confrontali con pazienti simili nel database.",
+        "answer_relevancy": 0.7942,
+        "clinical_validity": 0.75,
+        "context_precision": 1.0
+      },
+      {
+        "index": 26,
+        "hadm_id": "TARGET_26",
+        "question_id": "Q14",
+        "question_category": "comorbidity",
+        "user_input": "Fai un'analisi approfondita su quali altre malattie potrebbero insorgere nel paziente.",
+        "answer_relevancy": 0.7058,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 27,
+        "hadm_id": "TARGET_27",
+        "question_id": "Q14",
+        "question_category": "comorbidity",
+        "user_input": "Fai un'analisi approfondita su quali altre malattie potrebbero insorgere nel paziente.",
+        "answer_relevancy": 0.7194,
+        "clinical_validity": 0.5,
+        "context_precision": 1.0
+      },
+      {
+        "index": 28,
+        "hadm_id": "TARGET_28",
+        "question_id": "Q15",
+        "question_category": "comorbidity",
+        "user_input": "Descrivi il quadro generale delle diagnosi attribuite al paziente durante il ricovero.",
+        "answer_relevancy": 0.869,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 29,
+        "hadm_id": "TARGET_29",
+        "question_id": "Q15",
+        "question_category": "comorbidity",
+        "user_input": "Descrivi il quadro generale delle diagnosi attribuite al paziente durante il ricovero.",
+        "answer_relevancy": 0.7349,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 30,
+        "hadm_id": "TARGET_30",
+        "question_id": "Q16",
+        "question_category": "comorbidity",
+        "user_input": "Esistono correlazioni tra le diverse diagnosi di questo paziente e quelle di casi simili?",
+        "answer_relevancy": 0.845,
+        "clinical_validity": 0.75,
+        "context_precision": 1.0
+      },
+      {
+        "index": 31,
+        "hadm_id": "TARGET_31",
+        "question_id": "Q16",
+        "question_category": "comorbidity",
+        "user_input": "Esistono correlazioni tra le diverse diagnosi di questo paziente e quelle di casi simili?",
+        "answer_relevancy": 0.7886,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 32,
+        "hadm_id": "TARGET_32",
+        "question_id": "Q17",
+        "question_category": "comorbidity",
+        "user_input": "Qual è la percentuale di decesso dei pazienti simili?",
+        "answer_relevancy": 0.7286,
+        "clinical_validity": 1.0,
+        "context_precision": 0.0
+      },
+      {
+        "index": 33,
+        "hadm_id": "TARGET_33",
+        "question_id": "Q17",
+        "question_category": "comorbidity",
+        "user_input": "Qual è la percentuale di decesso dei pazienti simili?",
+        "answer_relevancy": 0.7827,
+        "clinical_validity": 1.0,
+        "context_precision": 0.0
+      },
+      {
+        "index": 34,
+        "hadm_id": "TARGET_34",
+        "question_id": "Q18",
+        "question_category": "comorbidity",
+        "user_input": "Elenca le condizioni cliniche secondarie che potrebbero influenzare il quadro del paziente.",
+        "answer_relevancy": 0.8172,
+        "clinical_validity": 0.75,
+        "context_precision": 1.0
+      },
+      {
+        "index": 35,
+        "hadm_id": "TARGET_35",
+        "question_id": "Q18",
+        "question_category": "comorbidity",
+        "user_input": "Elenca le condizioni cliniche secondarie che potrebbero influenzare il quadro del paziente.",
+        "answer_relevancy": 0.7602,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 36,
+        "hadm_id": "TARGET_36",
+        "question_id": "Q19",
+        "question_category": "comorbidity",
+        "user_input": "Analizza la complessità clinica del paziente basandoti sulle comorbidità e confronta con il database.",
+        "answer_relevancy": 0.7329,
+        "clinical_validity": 0.85,
+        "context_precision": 1.0
+      },
+      {
+        "index": 37,
+        "hadm_id": "TARGET_37",
+        "question_id": "Q19",
+        "question_category": "comorbidity",
+        "user_input": "Analizza la complessità clinica del paziente basandoti sulle comorbidità e confronta con il database.",
+        "answer_relevancy": 0.7321,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 38,
+        "hadm_id": "TARGET_38",
+        "question_id": "Q20",
+        "question_category": "comorbidity",
+        "user_input": "Quali pattern diagnostici secondari emergono dalle cartelle cliniche?",
+        "answer_relevancy": 0.8194,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 39,
+        "hadm_id": "TARGET_39",
+        "question_id": "Q20",
+        "question_category": "comorbidity",
+        "user_input": "Quali pattern diagnostici secondari emergono dalle cartelle cliniche?",
+        "answer_relevancy": 0.8221,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 40,
+        "hadm_id": "TARGET_40",
+        "question_id": "Q21",
+        "question_category": "pharmacology",
+        "user_input": "Quali consigli farmacologici daresti per questo paziente?",
+        "answer_relevancy": 0.796,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 41,
+        "hadm_id": "TARGET_41",
+        "question_id": "Q21",
+        "question_category": "pharmacology",
+        "user_input": "Quali consigli farmacologici daresti per questo paziente?",
+        "answer_relevancy": 0.743,
+        "clinical_validity": 0.85,
+        "context_precision": 1.0
+      },
+      {
+        "index": 42,
+        "hadm_id": "TARGET_42",
+        "question_id": "Q22",
+        "question_category": "pharmacology",
+        "user_input": "Qual è la terapia farmacologica ottimale basata sulla storia clinica?",
+        "answer_relevancy": 0.7709,
+        "clinical_validity": 0.75,
+        "context_precision": 1.0
+      },
+      {
+        "index": 43,
+        "hadm_id": "TARGET_43",
+        "question_id": "Q22",
+        "question_category": "pharmacology",
+        "user_input": "Qual è la terapia farmacologica ottimale basata sulla storia clinica?",
+        "answer_relevancy": 0.7578,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 44,
+        "hadm_id": "TARGET_44",
+        "question_id": "Q23",
+        "question_category": "pharmacology",
+        "user_input": "Consiglia dei farmaci appropriati per trattare le patologie di questo paziente.",
+        "answer_relevancy": 0.7485,
+        "clinical_validity": 0.5,
+        "context_precision": 1.0
+      },
+      {
+        "index": 45,
+        "hadm_id": "TARGET_45",
+        "question_id": "Q23",
+        "question_category": "pharmacology",
+        "user_input": "Consiglia dei farmaci appropriati per trattare le patologie di questo paziente.",
+        "answer_relevancy": 0.7395,
+        "clinical_validity": 0.85,
+        "context_precision": 1.0
+      },
+      {
+        "index": 46,
+        "hadm_id": "TARGET_46",
+        "question_id": "Q24",
+        "question_category": "pharmacology",
+        "user_input": "Quali sono le raccomandazioni terapeutiche per questo specifico quadro clinico?",
+        "answer_relevancy": 0.7621,
+        "clinical_validity": 0.75,
+        "context_precision": 1.0
+      },
+      {
+        "index": 47,
+        "hadm_id": "TARGET_47",
+        "question_id": "Q24",
+        "question_category": "pharmacology",
+        "user_input": "Quali sono le raccomandazioni terapeutiche per questo specifico quadro clinico?",
+        "answer_relevancy": 0.7687,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 48,
+        "hadm_id": "TARGET_48",
+        "question_id": "Q25",
+        "question_category": "pharmacology",
+        "user_input": "Fornisci suggerimenti sull'uso dei farmaci per questo paziente.",
+        "answer_relevancy": 0.7373,
+        "clinical_validity": 0.75,
+        "context_precision": 1.0
+      },
+      {
+        "index": 49,
+        "hadm_id": "TARGET_49",
+        "question_id": "Q25",
+        "question_category": "pharmacology",
+        "user_input": "Fornisci suggerimenti sull'uso dei farmaci per questo paziente.",
+        "answer_relevancy": 0.7459,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 50,
+        "hadm_id": "TARGET_50",
+        "question_id": "Q26",
+        "question_category": "pharmacology",
+        "user_input": "Quale regime farmacologico sarebbe più indicato per questo caso?",
+        "answer_relevancy": 0.7909,
+        "clinical_validity": 0.85,
+        "context_precision": 1.0
+      },
+      {
+        "index": 51,
+        "hadm_id": "TARGET_51",
+        "question_id": "Q26",
+        "question_category": "pharmacology",
+        "user_input": "Quale regime farmacologico sarebbe più indicato per questo caso?",
+        "answer_relevancy": 0.7691,
+        "clinical_validity": 0.25,
+        "context_precision": 1.0
+      },
+      {
+        "index": 52,
+        "hadm_id": "TARGET_52",
+        "question_id": "Q27",
+        "question_category": "pharmacology",
+        "user_input": "Ci sono interazioni farmacologiche da evitare per questo paziente?",
+        "answer_relevancy": 0.7528,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 53,
+        "hadm_id": "TARGET_53",
+        "question_id": "Q27",
+        "question_category": "pharmacology",
+        "user_input": "Ci sono interazioni farmacologiche da evitare per questo paziente?",
+        "answer_relevancy": 0.7679,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 54,
+        "hadm_id": "TARGET_54",
+        "question_id": "Q28",
+        "question_category": "pharmacology",
+        "user_input": "Indica una possibile strategia farmacologica per migliorare l'esito clinico.",
+        "answer_relevancy": 0.7483,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 55,
+        "hadm_id": "TARGET_55",
+        "question_id": "Q28",
+        "question_category": "pharmacology",
+        "user_input": "Indica una possibile strategia farmacologica per migliorare l'esito clinico.",
+        "answer_relevancy": 0.7634,
+        "clinical_validity": 1.0,
+        "context_precision": 0.538
+      },
+      {
+        "index": 56,
+        "hadm_id": "TARGET_56",
+        "question_id": "Q29",
+        "question_category": "pharmacology",
+        "user_input": "Quali farmaci dovrebbero essere considerati prioritari per questo paziente?",
+        "answer_relevancy": 0.7786,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 57,
+        "hadm_id": "TARGET_57",
+        "question_id": "Q29",
+        "question_category": "pharmacology",
+        "user_input": "Quali farmaci dovrebbero essere considerati prioritari per questo paziente?",
+        "answer_relevancy": 0.7497,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 58,
+        "hadm_id": "TARGET_58",
+        "question_id": "Q30",
+        "question_category": "pharmacology",
+        "user_input": "Sulla base delle diagnosi, quali sono i principali consigli terapeutici?",
+        "answer_relevancy": 0.7242,
+        "clinical_validity": 1.0,
+        "context_precision": 0.538
+      },
+      {
+        "index": 59,
+        "hadm_id": "TARGET_59",
+        "question_id": "Q30",
+        "question_category": "pharmacology",
+        "user_input": "Sulla base delle diagnosi, quali sono i principali consigli terapeutici?",
+        "answer_relevancy": 0.7486,
+        "clinical_validity": 1.0,
+        "context_precision": 0.4881
+      },
+      {
+        "index": 60,
+        "hadm_id": "TARGET_60",
+        "question_id": "Q31",
+        "question_category": "similarity",
+        "user_input": "Confronta questo paziente con casi simili nel database per identificare pattern comuni.",
+        "answer_relevancy": 0.8064,
+        "clinical_validity": 1.0,
+        "context_precision": 0.538
+      },
+      {
+        "index": 61,
+        "hadm_id": "TARGET_61",
+        "question_id": "Q31",
+        "question_category": "similarity",
+        "user_input": "Confronta questo paziente con casi simili nel database per identificare pattern comuni.",
+        "answer_relevancy": 0.7819,
+        "clinical_validity": 1.0,
+        "context_precision": 0.4881
+      },
+      {
+        "index": 62,
+        "hadm_id": "TARGET_62",
+        "question_id": "Q32",
+        "question_category": "similarity",
+        "user_input": "Come si posiziona questo paziente rispetto a soggetti con diagnosi analoghe?",
+        "answer_relevancy": 0.8155,
+        "clinical_validity": 0.85,
+        "context_precision": 0.0
+      },
+      {
+        "index": 63,
+        "hadm_id": "TARGET_63",
+        "question_id": "Q32",
+        "question_category": "similarity",
+        "user_input": "Come si posiziona questo paziente rispetto a soggetti con diagnosi analoghe?",
+        "answer_relevancy": 0.7624,
+        "clinical_validity": 0.5,
+        "context_precision": 0.0
+      },
+      {
+        "index": 64,
+        "hadm_id": "TARGET_64",
+        "question_id": "Q33",
+        "question_category": "similarity",
+        "user_input": "Analizza le differenze e le somiglianze tra questo paziente e i suoi simili.",
+        "answer_relevancy": 0.8167,
+        "clinical_validity": 0.75,
+        "context_precision": 0.0
+      },
+      {
+        "index": 65,
+        "hadm_id": "TARGET_65",
+        "question_id": "Q33",
+        "question_category": "similarity",
+        "user_input": "Analizza le differenze e le somiglianze tra questo paziente e i suoi simili.",
+        "answer_relevancy": 0.8407,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 66,
+        "hadm_id": "TARGET_66",
+        "question_id": "Q34",
+        "question_category": "similarity",
+        "user_input": "Quali sono i risultati clinici tipici per pazienti simili a questo?",
+        "answer_relevancy": 0.7363,
+        "clinical_validity": 0.75,
+        "context_precision": 0.4864
+      },
+      {
+        "index": 67,
+        "hadm_id": "TARGET_67",
+        "question_id": "Q34",
+        "question_category": "similarity",
+        "user_input": "Quali sono i risultati clinici tipici per pazienti simili a questo?",
+        "answer_relevancy": 0.7484,
+        "clinical_validity": 0.5,
+        "context_precision": 1.0
+      },
+      {
+        "index": 68,
+        "hadm_id": "TARGET_68",
+        "question_id": "Q35",
+        "question_category": "similarity",
+        "user_input": "Confronta il decorso di questo paziente con quello di altri casi comparabili.",
+        "answer_relevancy": 0.8692,
+        "clinical_validity": 1.0,
+        "context_precision": 0.4864
+      },
+      {
+        "index": 69,
+        "hadm_id": "TARGET_69",
+        "question_id": "Q35",
+        "question_category": "similarity",
+        "user_input": "Confronta il decorso di questo paziente con quello di altri casi comparabili.",
+        "answer_relevancy": 0.637,
+        "clinical_validity": 0.85,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 70,
+        "hadm_id": "TARGET_70",
+        "question_id": "Q36",
+        "question_category": "similarity",
+        "user_input": "Esistono pazienti nel database con un quadro clinico quasi identico?",
+        "answer_relevancy": 0.63,
+        "clinical_validity": 1.0,
+        "context_precision": 0.4881
+      },
+      {
+        "index": 71,
+        "hadm_id": "TARGET_71",
+        "question_id": "Q36",
+        "question_category": "similarity",
+        "user_input": "Esistono pazienti nel database con un quadro clinico quasi identico?",
+        "answer_relevancy": 0.0,
+        "clinical_validity": 0.5,
+        "context_precision": 1.0
+      },
+      {
+        "index": 72,
+        "hadm_id": "TARGET_72",
+        "question_id": "Q37",
+        "question_category": "similarity",
+        "user_input": "Usa i dati dei pazienti simili per valutare la tipicità di questo caso.",
+        "answer_relevancy": 0.7986,
+        "clinical_validity": 0.75,
+        "context_precision": 1.0
+      },
+      {
+        "index": 73,
+        "hadm_id": "TARGET_73",
+        "question_id": "Q37",
+        "question_category": "similarity",
+        "user_input": "Usa i dati dei pazienti simili per valutare la tipicità di questo caso.",
+        "answer_relevancy": 0.7321,
+        "clinical_validity": 0.85,
+        "context_precision": 0.3626
+      },
+      {
+        "index": 74,
+        "hadm_id": "TARGET_74",
+        "question_id": "Q38",
+        "question_category": "similarity",
+        "user_input": "In che modo questo paziente si discosta dai pattern standard di pazienti simili?",
+        "answer_relevancy": 0.0,
+        "clinical_validity": 0.5,
+        "context_precision": 1.0
+      },
+      {
+        "index": 75,
+        "hadm_id": "TARGET_75",
+        "question_id": "Q38",
+        "question_category": "similarity",
+        "user_input": "In che modo questo paziente si discosta dai pattern standard di pazienti simili?",
+        "answer_relevancy": 0.7935,
+        "clinical_validity": 1.0,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 76,
+        "hadm_id": "TARGET_76",
+        "question_id": "Q39",
+        "question_category": "similarity",
+        "user_input": "Quali strategie terapeutiche hanno funzionato meglio in pazienti simili a questo?",
+        "answer_relevancy": 0.7222,
+        "clinical_validity": 0.85,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 77,
+        "hadm_id": "TARGET_77",
+        "question_id": "Q39",
+        "question_category": "similarity",
+        "user_input": "Quali strategie terapeutiche hanno funzionato meglio in pazienti simili a questo?",
+        "answer_relevancy": 0.7551,
+        "clinical_validity": 0.25,
+        "context_precision": 0.4881
+      },
+      {
+        "index": 78,
+        "hadm_id": "TARGET_78",
+        "question_id": "Q40",
+        "question_category": "similarity",
+        "user_input": "Esegui un'analisi comparativa tra questo paziente e la popolazione simile nel database.",
+        "answer_relevancy": 0.7825,
+        "clinical_validity": 1.0,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 79,
+        "hadm_id": "TARGET_79",
+        "question_id": "Q40",
+        "question_category": "similarity",
+        "user_input": "Esegui un'analisi comparativa tra questo paziente e la popolazione simile nel database.",
+        "answer_relevancy": 0.0,
+        "clinical_validity": 0.85,
+        "context_precision": 0.0
+      },
+      {
+        "index": 80,
+        "hadm_id": "TARGET_80",
+        "question_id": "Q41",
+        "question_category": "mixed",
+        "user_input": "Riassumi le terapie e le comorbidità di questo paziente.",
+        "answer_relevancy": 0.8006,
+        "clinical_validity": 1.0,
+        "context_precision": 0.8268
+      },
+      {
+        "index": 81,
+        "hadm_id": "TARGET_81",
+        "question_id": "Q41",
+        "question_category": "mixed",
+        "user_input": "Riassumi le terapie e le comorbidità di questo paziente.",
+        "answer_relevancy": 0.7411,
+        "clinical_validity": 0.85,
+        "context_precision": 0.3626
+      },
+      {
+        "index": 82,
+        "hadm_id": "TARGET_82",
+        "question_id": "Q42",
+        "question_category": "mixed",
+        "user_input": "Cosa suggeriscono i dati dei pazienti simili riguardo al trattamento di questo caso?",
+        "answer_relevancy": 0.0,
+        "clinical_validity": 0.5,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 83,
+        "hadm_id": "TARGET_83",
+        "question_id": "Q42",
+        "question_category": "mixed",
+        "user_input": "Cosa suggeriscono i dati dei pazienti simili riguardo al trattamento di questo caso?",
+        "answer_relevancy": 0.7159,
+        "clinical_validity": 1.0,
+        "context_precision": 0.0
+      },
+      {
+        "index": 84,
+        "hadm_id": "TARGET_84",
+        "question_id": "Q43",
+        "question_category": "mixed",
+        "user_input": "Estrai info su farmaci e diagnosi e confrontale con la media del database.",
+        "answer_relevancy": 0.6791,
+        "clinical_validity": 0.75,
+        "context_precision": 0.8268
+      },
+      {
+        "index": 85,
+        "hadm_id": "TARGET_85",
+        "question_id": "Q43",
+        "question_category": "mixed",
+        "user_input": "Estrai info su farmaci e diagnosi e confrontale con la media del database.",
+        "answer_relevancy": 0.712,
+        "clinical_validity": 0.75,
+        "context_precision": 1.0
+      },
+      {
+        "index": 86,
+        "hadm_id": "TARGET_86",
+        "question_id": "Q44",
+        "question_category": "mixed",
+        "user_input": "Quali sono i punti critici del quadro clinico e farmacologico di questo paziente?",
+        "answer_relevancy": 0.7566,
+        "clinical_validity": 0.75,
+        "context_precision": 1.0
+      },
+      {
+        "index": 87,
+        "hadm_id": "TARGET_87",
+        "question_id": "Q44",
+        "question_category": "mixed",
+        "user_input": "Quali sono i punti critici del quadro clinico e farmacologico di questo paziente?",
+        "answer_relevancy": 0.8122,
+        "clinical_validity": 0.45,
+        "context_precision": 1.0
+      },
+      {
+        "index": 88,
+        "hadm_id": "TARGET_88",
+        "question_id": "Q45",
+        "question_category": "mixed",
+        "user_input": "Fornisci un riassunto approfondito di tutto ciò che sai sul paziente.",
+        "answer_relevancy": 0.6934,
+        "clinical_validity": 1.0,
+        "context_precision": 1.0
+      },
+      {
+        "index": 89,
+        "hadm_id": "TARGET_89",
+        "question_id": "Q45",
+        "question_category": "mixed",
+        "user_input": "Fornisci un riassunto approfondito di tutto ciò che sai sul paziente.",
+        "answer_relevancy": 0.7432,
+        "clinical_validity": 0.5,
+        "context_precision": 1.0
+      },
+      {
+        "index": 90,
+        "hadm_id": "TARGET_90",
+        "question_id": "Q46",
+        "question_category": "mixed",
+        "user_input": "Analizza le patologie del paziente e consiglia una terapia basata su casi analoghi.",
+        "answer_relevancy": 0.6826,
+        "clinical_validity": 0.25,
+        "context_precision": 1.0
+      },
+      {
+        "index": 91,
+        "hadm_id": "TARGET_91",
+        "question_id": "Q46",
+        "question_category": "mixed",
+        "user_input": "Analizza le patologie del paziente e consiglia una terapia basata su casi analoghi.",
+        "answer_relevancy": 0.7335,
+        "clinical_validity": 0.9,
+        "context_precision": 0.0
+      },
+      {
+        "index": 92,
+        "hadm_id": "TARGET_92",
+        "question_id": "Q47",
+        "question_category": "mixed",
+        "user_input": "Quali sono i dati salienti del paziente e quali pattern di rischio emergono dal database?",
+        "answer_relevancy": 0.7662,
+        "clinical_validity": 0.5,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 93,
+        "hadm_id": "TARGET_93",
+        "question_id": "Q47",
+        "question_category": "mixed",
+        "user_input": "Quali sono i dati salienti del paziente e quali pattern di rischio emergono dal database?",
+        "answer_relevancy": 0.7877,
+        "clinical_validity": 1.0,
+        "context_precision": 0.0
+      },
+      {
+        "index": 94,
+        "hadm_id": "TARGET_94",
+        "question_id": "Q48",
+        "question_category": "mixed",
+        "user_input": "Analizza i parametri di laboratorio e i segni vitali critici di questo paziente confrontandoli con pazienti simili",
+        "answer_relevancy": 0.0,
+        "clinical_validity": 0.5,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 95,
+        "hadm_id": "TARGET_95",
+        "question_id": "Q48",
+        "question_category": "mixed",
+        "user_input": "Analizza i parametri di laboratorio e i segni vitali critici di questo paziente confrontandoli con pazienti simili",
+        "answer_relevancy": 0.7871,
+        "clinical_validity": 0.85,
+        "context_precision": 1.0
+      },
+      {
+        "index": 96,
+        "hadm_id": "TARGET_96",
+        "question_id": "Q49",
+        "question_category": "mixed",
+        "user_input": "Confronta il profilo di rischio di questo paziente con casi clinici affini nel database.",
+        "answer_relevancy": 0.8078,
+        "clinical_validity": 1.0,
+        "context_precision": 0.0
+      },
+      {
+        "index": 97,
+        "hadm_id": "TARGET_97",
+        "question_id": "Q49",
+        "question_category": "mixed",
+        "user_input": "Confronta il profilo di rischio di questo paziente con casi clinici affini nel database.",
+        "answer_relevancy": 0.8039,
+        "clinical_validity": 0.25,
+        "context_precision": 0.0
+      },
+      {
+        "index": 98,
+        "hadm_id": "TARGET_98",
+        "question_id": "Q50",
+        "question_category": "mixed",
+        "user_input": "Quali sono le informazioni chiave da considerare per la gestione complessiva di questo paziente?",
+        "answer_relevancy": 0.7416,
+        "clinical_validity": 0.5,
+        "context_precision": 0.2572
+      },
+      {
+        "index": 99,
+        "hadm_id": "TARGET_99",
+        "question_id": "Q50",
+        "question_category": "mixed",
+        "user_input": "Quali sono le informazioni chiave da considerare per la gestione complessiva di questo paziente?",
+        "answer_relevancy": 0.7755,
+        "clinical_validity": 0.25,
+        "context_precision": 0.2572
+      }
+    ]
+  }
+}
